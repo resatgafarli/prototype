@@ -30,7 +30,7 @@ At the first step going to develop first **Episode Preparation** component that 
 * Crop audio file by subtitle
 * Search Subtitle Over Internet
 
-## More Challenging Features of Component are 
+### More Challenging Feature of Component
 * Audio Automatic Captioning 
 
 More details about next features will be provided at the end of each step...
