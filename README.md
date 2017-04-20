@@ -6,6 +6,26 @@ The application concept are based on **Auditory Learning** and **Shadowing Techn
 * [For more information about Shadowing Technique please read article...](https://en.wikipedia.org/wiki/Speech_shadowing)
 
 
-The main goals of application are help to prepare listening episode contents, manage them, plan and track sudying process.   
+The main goals of application are help to prepare listening episode contents, manage them, plan and track studying process.   
 
-More details will be provided...
+The application architectural style is component based. The conceptual user interface design is already completed and main functional modules are defined. Each module of application will be developed  as a software component and integrate into application step by step.  
+
+## Development Environment
+The application is developing with C++/Qt framework under Linux and Windows OS. 
+
+## Next Step
+At the first step going to develop first **Episode Preparation** component that will manage audio and related subtitle files in order to synchronize them, crop unwanted parts etc.  
+
+## Main Features of Component
+* Open and edit audio subtitle
+* Synchronize subtitle with audio file
+* Crop audio file by subtitle
+* Search Subtitle Over Internet
+
+## More Challenging Features of Component are 
+* Audio Automatic Captioning 
+
+More details about next features will be provided at the end of each step...
+
+
+
