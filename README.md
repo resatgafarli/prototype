@@ -11,6 +11,13 @@ The main goals of application are help to prepare listening episode contents, ma
 
 The application architectural style is component based. The conceptual user interface design is already completed and main functional modules are defined. Each module of application will be developed  as a software component and integrate into application step by step.  
 
+## Application Functional Modules
+The already decided main application modules are listed below:
+* Episode Preparation 
+* Episode Player 
+* Episode Content Manager
+* Study Planning
+
 ## Development Environment
 The application is developing with C++/Qt framework under Linux and Windows OS. 
 
