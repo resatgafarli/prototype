@@ -1,6 +1,7 @@
 # The Prototype Project is a Proof of Concept Desktop Application for Language Shadowing Technique
 
 The application concept are based on **Auditory Learning** and **Shadowing Technique** language learning methods. 
+
 **For more information about methods please read articles:**
 * [Auditory Learning](https://en.wikipedia.org/wiki/Auditory_learning)
 * [Shadowing Technique](https://en.wikipedia.org/wiki/Speech_shadowing)
@@ -18,7 +19,7 @@ At the first step going to develop first **Episode Preparation** component that 
 
 ## Main Features of Component
 * Open and edit audio subtitle
-* Synchronize subtitle with audio file
+* Prelisten and Synchronize subtitle with audio file
 * Crop audio file by subtitle
 * Search Subtitle Over Internet
 
