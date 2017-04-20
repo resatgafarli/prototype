@@ -15,7 +15,7 @@ The application architectural style is component based. The conceptual user inte
 The application is developing with C++/Qt framework under Linux and Windows OS. 
 
 ## Next Step
-At the first step going to develop first **Episode Preparation** component that will manage audio and related subtitle files in order to synchronize them, crop unwanted parts etc.  
+At the first step going to develop first **Episode Preparation** component that will manage audio and related subtitle files in order to synchronize them, crop unwanted episode parts etc.  
 
 ## Main Features of Component
 * Open and edit audio subtitle
