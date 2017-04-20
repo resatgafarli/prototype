@@ -1,4 +1,4 @@
-# The Prototype Project is a Proof of Concept Desktop Application for Language Shadowing Technique
+# The Prototype is a Proof of Concept Desktop Application for Language Shadowing Technique
 
 The application concept are based on **Auditory Learning** and **Shadowing Technique** language learning methods. 
 
