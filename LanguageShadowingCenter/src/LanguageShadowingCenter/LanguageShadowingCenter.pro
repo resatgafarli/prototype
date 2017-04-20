@@ -30,18 +30,13 @@ HEADERS  += languageshadowingcenter.h
 
 FORMS    += languageshadowingcenter.ui
 
-Release {
-    DESTDIR = release
-    OBJECTS_DIR = release/.obj
-    MOC_DIR = release/.moc
-    RCC_DIR = release/.rcc
-    UI_DIR = release/.ui
+DESTDIR = ../../build
+
+CONFIG += debug_and_release
+
+CONFIG(debug, debug|release) {
+    TARGET = $$join(TARGET,,$$DESTDIR/debug/,_D)
+} else {
+    TARGET = $$join(TARGET,,$$DESTDIR/release/,)
 }
 
-Debug {
-    DESTDIR = debug
-    OBJECTS_DIR = debug/.obj
-    MOC_DIR = debug/.moc
-    RCC_DIR = debug/.rcc
-    UI_DIR = debug/.ui
-}
