@@ -18,7 +18,7 @@ The application is developing with C++/Qt framework under Linux and Windows OS.
 At the first step going to develop first **Episode Preparation** component that will manage audio and related subtitle files in order to synchronize them, crop unwanted episode parts etc.  
 
 ## Main Features of Component
-* Open and edit audio subtitle
+* Open and Edit audio subtitle
 * Prelisten and Synchronize subtitle with audio file
 * Crop audio file by subtitle
 * Search Subtitle Over Internet
