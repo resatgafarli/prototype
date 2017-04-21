@@ -16,12 +16,12 @@ The already decided main application modules are listed below:
 * Episode Preparation 
 * Episode Player 
 * Episode Content Manager
-* Study Planning
+* Study Planner
 
 ## Development Environment
 The application is developing with C++/Qt framework under Linux and Windows OS. 
 
-## Next Step
+## Next Step - Episode Preparation Component
 At the first step going to develop first **Episode Preparation** component that will manage audio and related subtitle files in order to synchronize them, crop unwanted episode parts etc.  
 
 ## Main Features of Component
@@ -30,7 +30,7 @@ At the first step going to develop first **Episode Preparation** component that 
 * Crop audio file by subtitle
 * Search Subtitle Over Internet
 
-## More Challenging Features of Component are 
+### More Challenging Feature of Component
 * Audio Automatic Captioning 
 
 More details about next features will be provided at the end of each step...
