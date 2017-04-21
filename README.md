@@ -21,7 +21,7 @@ The already decided main application modules are listed below:
 ## Development Environment
 The application is developing with C++/Qt framework under Linux and Windows OS. 
 
-## Next Step
+## Next Step - Episode Preparation Component
 At the first step going to develop first **Episode Preparation** component that will manage audio and related subtitle files in order to synchronize them, crop unwanted episode parts etc.  
 
 ## Main Features of Component
