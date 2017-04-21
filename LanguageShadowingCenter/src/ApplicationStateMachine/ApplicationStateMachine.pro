@@ -8,6 +8,7 @@ QT       -= gui
 
 TARGET = ApplicationStateMachine
 TEMPLATE = lib
+include(../LanguageShadowingCenter.pri)
 
 DEFINES += APPLICATIONSTATEMACHINE_LIBRARY
 
