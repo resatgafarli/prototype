@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 include(LanguageShadowingCenter.pri)
 SUBDIRS += LanguageShadowingCenter \
-    ApplicationStateMachine
-    #QtUnitTests
+    ApplicationStateMachine \
+    QtUnitTests
     
 CONFIG += debug_and_release
