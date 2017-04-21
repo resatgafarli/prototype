@@ -8,8 +8,10 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
 TARGET = LanguageShadowingCenter
 TEMPLATE = app
+include(../LanguageShadowingCenter.pri)
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -30,13 +32,13 @@ HEADERS  += languageshadowingcenter.h
 
 FORMS    += languageshadowingcenter.ui
 
-DESTDIR = ../../build
+
 
 CONFIG += debug_and_release
 
 CONFIG(debug, debug|release) {
-    TARGET = $$join(TARGET,,$$DESTDIR/debug/,_D)
+    TARGET = $$join(TARGET,,$$PROJECT_BUILD_PATH/debug/,_D)
 } else {
-    TARGET = $$join(TARGET,,$$DESTDIR/release/,)
+    TARGET = $$join(TARGET,,$$PROJECT_BUILD_PATH/release/,)
 }
 
