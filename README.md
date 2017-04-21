@@ -16,7 +16,7 @@ The already decided main application modules are listed below:
 * Episode Preparation 
 * Episode Player 
 * Episode Content Manager
-* Study Planning
+* Study Planner
 
 ## Development Environment
 The application is developing with C++/Qt framework under Linux and Windows OS. 
