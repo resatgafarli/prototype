@@ -28,11 +28,12 @@ Q_OBJECT
 public:
     LSCApplicationStateMachine();
     Q_SLOT void start();
-
+    Q_SLOT void started();
 private:
+    QSharedPointer<QStateMachine> m_stateMachine;
     QSharedPointer<QState> s1;
     QSharedPointer<QState> s2;
-    QSharedPointer<QStateMachine> m_stateMachine;
+
 
 public:
     bool checkIfInState2();
