@@ -13,7 +13,7 @@ License: GPL-3.0
 #include <QObject>
 #include <QState>
 #include <QStateMachine>
-#include <QSharedPointer>
+#include <QPointer>
 
 
 #ifdef APPLICATIONSTATEMACHINE_LIBRARY
@@ -28,16 +28,19 @@ Q_OBJECT
 public:
     LSCApplicationStateMachine();
     Q_SLOT void start();
-    Q_SLOT void started();
 private:
-    QSharedPointer<QStateMachine> m_stateMachine;
-    QSharedPointer<QState> s1;
-    QSharedPointer<QState> s2;
+    QStateMachine m_stateMachine;
+    QPointer<QState> s1;
+    QPointer<QState> s2;
 
 
 public:
+    bool checkStarted();
     bool checkIfInState2();
+    bool checkIfInState1();
     Q_SIGNAL void toState2();
+    Q_SIGNAL void toState1();
 };
 
 #endif // LSCAPPLICATIONSTATEMACHINE_H
+

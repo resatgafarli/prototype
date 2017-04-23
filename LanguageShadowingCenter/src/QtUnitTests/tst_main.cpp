@@ -5,11 +5,13 @@
 
 int main(int argc, char** argv)
 {
-   int status = 0;
-   { AppStateMachineTests tc;status |= QTest::qExec(&tc, argc, argv);}
-   { EpisdoPreparationTests tc; status |= QTest::qExec(&tc, argc, argv);}
+    QCoreApplication a(argc, argv);
 
-   return status;
+   { AppStateMachineTests tc; QTest::qExec(&tc, argc, argv);}
+   { EpisdoPreparationTests tc; QTest::qExec(&tc, argc, argv);}
+
+   return a.exec();
+
 }
 
 

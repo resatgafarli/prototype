@@ -1,15 +1,13 @@
+#include "lscapplicationstatemachine.h"
 #include <QString>
 #include <QtTest>
-#include <QSignalSpy>
-
-#include "lscapplicationstatemachine.h"
 
 class AppStateMachineTests : public QObject
 {
     Q_OBJECT
 
 public:
-    AppStateMachineTests (){};
+    AppStateMachineTests (){}
 
 private Q_SLOTS:
 
@@ -17,8 +15,13 @@ private Q_SLOTS:
     {
         LSCApplicationStateMachine stateMachine;
         stateMachine.start();
+        QVERIFY(stateMachine.checkStarted());
+        QVERIFY(stateMachine.checkIfInState1());
         emit stateMachine.toState2();
-        QCOMPARE(stateMachine.checkIfInState2(), true);
+        QVERIFY(stateMachine.checkIfInState2());
+        emit stateMachine.toState1();
+        QVERIFY(stateMachine.checkIfInState1());
+
     }
 };
 
