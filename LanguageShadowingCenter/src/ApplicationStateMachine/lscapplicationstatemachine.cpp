@@ -35,21 +35,14 @@ LSCApplicationStateMachine::LSCApplicationStateMachine()
     s3 = new QState();
 
     //Forward transition
-    int t = QEvent::registerEventType();//65535
-    s1->addTransition(new EventTransition(QEvent::Type(t), s2));
-    t = QEvent::registerEventType();//65534
-    s2->addTransition(new EventTransition(QEvent::Type(t), s3));
-    t = QEvent::registerEventType();//65533
-    s3->addTransition(new EventTransition(QEvent::Type(t), s1));
+    s1->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState1toState2"), s2));
+    s2->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState2toState3"), s3));
+    s3->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState3toState1"), s1));
 
     //Backward transition
-    t = QEvent::registerEventType();//65532
-    s1->addTransition(new EventTransition(QEvent::Type(t), s3));
-    t = QEvent::registerEventType();//65531
-    s3->addTransition(new EventTransition(QEvent::Type(t), s2));
-    t = QEvent::registerEventType();//65530
-    s2->addTransition(new EventTransition(QEvent::Type(t), s1));
-
+    s1->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState1toState3"), s3));
+    s3->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState3toState2"), s2));
+    s2->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState2toState1"), s1));
 
     m_stateMachine.addState(s1);
     m_stateMachine.addState(s2);
@@ -72,8 +65,8 @@ bool LSCApplicationStateMachine::checkStarted(){
     return m_stateMachine.isRunning();
 }
 
-void LSCApplicationStateMachine::switchToState(int eventNum){
-    m_stateMachine.postEvent(new QEvent(QEvent::Type(eventNum)));
+void LSCApplicationStateMachine::switchToState(QString fromToState){
+    m_stateMachine.postEvent(new QEvent(LSCCustomEventTypeGenereator::getEventType(fromToState)));
 }
 
 bool LSCApplicationStateMachine::checkIfInState1() {
@@ -95,4 +88,18 @@ bool LSCApplicationStateMachine::checkIfInState3(){
         return true;
     else
         return false;
+}
+
+/*---------------------- Custom Event Type Generator -------------------------------*/
+QEvent::Type LSCCustomEventTypeGenereator::getEventType(QString eventName){
+    static QMap<QString,QEvent::Type> m_eventMap;
+    QEvent::Type et = static_cast<QEvent::Type> (-1);
+    if(m_eventMap.contains(eventName))
+            et = m_eventMap[eventName];
+    else {
+            et = static_cast<QEvent::Type> (QEvent::registerEventType());
+            m_eventMap[eventName] = et;
+    }
+
+    return et;
 }

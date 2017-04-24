@@ -15,9 +15,10 @@ License: GPL-3.0
 #include <QPointer>
 #include <QState>
 #include <QList>
+#include <QMap>
 #include <QEventTransition>
 
-
+/*---------------------- General Application State Machine Library --------------------------*/
 #ifdef APPLICATIONSTATEMACHINE_LIBRARY
 class APPLICATIONSTATEMACHINESHARED_EXPORT LSCApplicationStateMachine: public QObject
 #else
@@ -30,11 +31,10 @@ Q_OBJECT
 public:
     LSCApplicationStateMachine();
     bool checkStarted();
-
     bool checkIfInState1();
     bool checkIfInState2();
     bool checkIfInState3();
-    void switchToState(int);
+    void switchToState(QString fromToState);
     void setObjectStateProperty(QObject & obj, QString property);
     Q_SLOT void start();
 
@@ -46,6 +46,22 @@ private:
 
 public:
 };
+
+/*---------------------- Custom Event Type Generator -------------------------------*/
+#ifdef APPLICATIONSTATEMACHINE_LIBRARY
+class APPLICATIONSTATEMACHINESHARED_EXPORT LSCCustomEventTypeGenereator: public QObject
+#else
+class LSCCustomEventTypeGenereator: public QObject
+#endif
+{
+private:
+    LSCCustomEventTypeGenereator(){}
+
+public:
+    static QEvent::Type getEventType(QString eventName);
+};
+
+
 
 #endif // LSCAPPLICATIONSTATEMACHINE_H
 

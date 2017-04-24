@@ -2,16 +2,17 @@
 #include <QString>
 #include <QtTest>
 
-class AppStateMachineTests : public QObject
+class tst_AppStateMachine: public QObject
 {
     Q_OBJECT
 
 public:
-    AppStateMachineTests (){}
+    tst_AppStateMachine (){}
 
 private Q_SLOTS:
 
-    void AppStateMachineTestsTest1()
+    /*State machine creation and state switch test*/
+    void stateMachineTransitionTest()
     {
         LSCApplicationStateMachine stateMachine;
         stateMachine.start();
@@ -19,27 +20,28 @@ private Q_SLOTS:
         QVERIFY(stateMachine.checkIfInState1());
 
         //Forward
-        stateMachine.switchToState(65535);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState1toState2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState2());
 
-        stateMachine.switchToState(65534);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState2toState3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState3());
 
-        stateMachine.switchToState(65533);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState3toState1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState1());
 
         //Backward
-        stateMachine.switchToState(65532);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState1toState3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState3());
 
-        stateMachine.switchToState(65531);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState3toState2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState2());
 
-        stateMachine.switchToState(65530);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState2toState1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState1());
     }
 
-    void AppStateMachineTestsTest2()
+    /*State machine creation and state switch test, object property assigmnet test*/
+    void stateMachinePropertyAssignmentTest()
     {
         LSCApplicationStateMachine stateMachine;
         QObject obj1,obj2,obj3;
@@ -59,20 +61,20 @@ private Q_SLOTS:
         QCOMPARE(obj3.property("property"),QVariant("STATE1"));
 
         //Forward
-        stateMachine.switchToState(65529);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState1toState2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState2());
         QCOMPARE(obj1.property("property"),QVariant("STATE2"));
         QCOMPARE(obj2.property("property"),QVariant("STATE2"));
         QCOMPARE(obj3.property("property"),QVariant("STATE2"));
 
 
-        stateMachine.switchToState(65528);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState2toState3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState3());
         QCOMPARE(obj1.property("property"),QVariant("STATE3"));
         QCOMPARE(obj2.property("property"),QVariant("STATE3"));
         QCOMPARE(obj3.property("property"),QVariant("STATE3"));
 
-        stateMachine.switchToState(65527);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState3toState1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState1());
         QCOMPARE(obj1.property("property"),QVariant("STATE1"));
         QCOMPARE(obj2.property("property"),QVariant("STATE1"));
@@ -80,21 +82,21 @@ private Q_SLOTS:
 
 
         //Backward
-        stateMachine.switchToState(65526);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState1toState3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState3());
         QCOMPARE(obj1.property("property"),QVariant("STATE3"));
         QCOMPARE(obj2.property("property"),QVariant("STATE3"));
         QCOMPARE(obj3.property("property"),QVariant("STATE3"));
 
 
-        stateMachine.switchToState(65525);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState3toState2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState2());
         QCOMPARE(obj1.property("property"),QVariant("STATE2"));
         QCOMPARE(obj2.property("property"),QVariant("STATE2"));
         QCOMPARE(obj3.property("property"),QVariant("STATE2"));
 
 
-        stateMachine.switchToState(65524);QCoreApplication::processEvents();
+        stateMachine.switchToState("fromState2toState1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState1());
         QCOMPARE(obj1.property("property"),QVariant("STATE1"));
         QCOMPARE(obj2.property("property"),QVariant("STATE1"));
@@ -104,6 +106,26 @@ private Q_SLOTS:
 
 };
 
+
+class tst_CustomEventTypeGenerator: public QObject
+{
+    Q_OBJECT
+
+public:
+    tst_CustomEventTypeGenerator (){}
+
+private Q_SLOTS:
+
+     void customEventTypeGeneratorTest(){
+        //First get test type map insertion
+        QCOMPARE(LSCCustomEventTypeGenereator::getEventType("event1"),static_cast<QEvent::Type>(65535));
+        QCOMPARE(LSCCustomEventTypeGenereator::getEventType("event2"),static_cast<QEvent::Type>(65534));
+
+        //Second get test getting already inserted event types
+        QCOMPARE(LSCCustomEventTypeGenereator::getEventType("event1"),static_cast<QEvent::Type>(65535));
+        QCOMPARE(LSCCustomEventTypeGenereator::getEventType("event2"),static_cast<QEvent::Type>(65534));
+     }
+};
 
 
 
