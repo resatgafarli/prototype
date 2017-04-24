@@ -1,8 +1,8 @@
 SOURCES += \
-    ../ApplicationStateMachine/lscapplicationstatemachine.cpp
+    ../LSCApplicationStateMachine/lscapplicationstatemachine.cpp
 
 HEADERS += \
-    ../ApplicationStateMachine/lscapplicationstatemachine.h
+    ../LSCApplicationStateMachine/lscapplicationstatemachine.h
 
 INCLUDEPATH += \
-    ../ApplicationStateMachine
+    ../LSCApplicationStateMachine

@@ -1,16 +1,17 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-04-24T20:22:46
+# Project created by QtCreator 2017-04-21T13:01:10
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       -= gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = EpisodePreparation
+TARGET = LSCApplicationStateMachine
 TEMPLATE = lib
 include(../LanguageShadowingCenter.pri)
+
+DEFINES += LSC_APPLICATIONSTATEMACHINE_LIBRARY
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -22,9 +23,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+SOURCES += lscapplicationstatemachine.cpp
 
-SOURCES += episodepreparation.cpp
+HEADERS += lscapplicationstatemachine.h\
+        lscapplicationstatemachine_global.h
 
-HEADERS  += episodepreparation.h
-
-FORMS    += episodepreparation.ui
+unix {
+    target.path = /usr/lib
+    INSTALLS += target
+}

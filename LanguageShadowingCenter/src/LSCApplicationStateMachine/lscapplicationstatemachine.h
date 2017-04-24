@@ -7,7 +7,7 @@ License: GPL-3.0
 #ifndef LSCAPPLICATIONSTATEMACHINE_H
 #define LSCAPPLICATIONSTATEMACHINE_H
 
-#include "applicationstatemachine_global.h"
+#include "lscapplicationstatemachine_global.h"
 #include <QObject>
 #include <QStateMachine>
 #include <QPointer>
@@ -16,8 +16,8 @@ License: GPL-3.0
 #include <QEventTransition>
 
 /*---------------------- General Application State Machine Library --------------------------*/
-#ifdef APPLICATIONSTATEMACHINE_LIBRARY
-class APPLICATIONSTATEMACHINESHARED_EXPORT LSCApplicationStateMachine: public QObject
+#ifdef LSC_APPLICATIONSTATEMACHINE_LIBRARY
+class LSC_APPLICATIONSTATEMACHINESHARED_EXPORT LSCApplicationStateMachine: public QObject
 #else
 class LSCApplicationStateMachine: public QObject
 #endif
