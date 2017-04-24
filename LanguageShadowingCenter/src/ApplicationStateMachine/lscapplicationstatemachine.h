@@ -11,9 +11,10 @@ License: GPL-3.0
 
 #include "applicationstatemachine_global.h"
 #include <QObject>
-#include <QState>
 #include <QStateMachine>
 #include <QPointer>
+#include <QState>
+#include <QEventTransition>
 
 
 #ifdef APPLICATIONSTATEMACHINE_LIBRARY
@@ -27,19 +28,20 @@ Q_OBJECT
 
 public:
     LSCApplicationStateMachine();
+    bool checkStarted();
+
+    bool checkIfInState1();
+    bool checkIfInState2();
+    bool checkIfInState3();
+    void switchToState(int);
     Q_SLOT void start();
 private:
     QStateMachine m_stateMachine;
     QPointer<QState> s1;
     QPointer<QState> s2;
-
+    QPointer<QState> s3;
 
 public:
-    bool checkStarted();
-    bool checkIfInState2();
-    bool checkIfInState1();
-    Q_SIGNAL void toState2();
-    Q_SIGNAL void toState1();
 };
 
 #endif // LSCAPPLICATIONSTATEMACHINE_H

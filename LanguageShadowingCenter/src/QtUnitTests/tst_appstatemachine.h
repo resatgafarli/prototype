@@ -17,10 +17,27 @@ private Q_SLOTS:
         stateMachine.start();
         QVERIFY(stateMachine.checkStarted());
         QVERIFY(stateMachine.checkIfInState1());
-        emit stateMachine.toState2();
+
+        //Forward
+        stateMachine.switchToState(1);QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState2());
-        emit stateMachine.toState1();
+
+        stateMachine.switchToState(2);QCoreApplication::processEvents();
+        QVERIFY(stateMachine.checkIfInState3());
+
+        stateMachine.switchToState(3);QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState1());
+
+        //Backward
+        stateMachine.switchToState(4);QCoreApplication::processEvents();
+        QVERIFY(stateMachine.checkIfInState3());
+
+        stateMachine.switchToState(5);QCoreApplication::processEvents();
+        QVERIFY(stateMachine.checkIfInState2());
+
+        stateMachine.switchToState(6);QCoreApplication::processEvents();
+        QVERIFY(stateMachine.checkIfInState1());
+
 
     }
 };
