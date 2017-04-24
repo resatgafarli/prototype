@@ -14,6 +14,7 @@ License: GPL-3.0
 #include <QStateMachine>
 #include <QPointer>
 #include <QState>
+#include <QList>
 #include <QEventTransition>
 
 
@@ -34,7 +35,9 @@ public:
     bool checkIfInState2();
     bool checkIfInState3();
     void switchToState(int);
+    void setObjectStateProperty(QObject & obj, QString property);
     Q_SLOT void start();
+
 private:
     QStateMachine m_stateMachine;
     QPointer<QState> s1;

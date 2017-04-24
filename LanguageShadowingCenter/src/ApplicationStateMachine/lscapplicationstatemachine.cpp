@@ -57,6 +57,13 @@ LSCApplicationStateMachine::LSCApplicationStateMachine()
     m_stateMachine.setInitialState(s1);
 }
 
+void LSCApplicationStateMachine::setObjectStateProperty(QObject & obj, QString property){
+
+    s1->assignProperty(&obj,property.toStdString().c_str(),"STATE1");
+    s2->assignProperty(&obj,property.toStdString().c_str(),"STATE2");
+    s3->assignProperty(&obj,property.toStdString().c_str(),"STATE3");
+}
+
 void LSCApplicationStateMachine::start(){
     m_stateMachine.start();
     QCoreApplication::processEvents();
