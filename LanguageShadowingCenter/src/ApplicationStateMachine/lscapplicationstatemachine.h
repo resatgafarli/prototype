@@ -4,8 +4,6 @@ File: lscapplicationstatemachine.h
 Date: 4/21/2017
 License: GPL-3.0
 *******************************************************/
-
-
 #ifndef LSCAPPLICATIONSTATEMACHINE_H
 #define LSCAPPLICATIONSTATEMACHINE_H
 
@@ -59,8 +57,6 @@ private:
 public:
     static QEvent::Type getEventType(QString eventName);
 };
-
-
 
 #endif // LSCAPPLICATIONSTATEMACHINE_H
 

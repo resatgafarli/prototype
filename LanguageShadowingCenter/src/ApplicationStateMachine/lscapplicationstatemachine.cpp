@@ -97,3 +97,4 @@ QEvent::Type LSCCustomEventTypeGenereator::getEventType(QString eventName){
 
     return et;
 }
+
