@@ -35,14 +35,20 @@ LSCApplicationStateMachine::LSCApplicationStateMachine()
     s3 = new QState();
 
     //Forward transition
-    s1->addTransition(new EventTransition(QEvent::Type(QEvent::User+1), s2));
-    s2->addTransition(new EventTransition(QEvent::Type(QEvent::User+2), s3));
-    s3->addTransition(new EventTransition(QEvent::Type(QEvent::User+3), s1));
+    int t = QEvent::registerEventType();//65535
+    s1->addTransition(new EventTransition(QEvent::Type(t), s2));
+    t = QEvent::registerEventType();//65534
+    s2->addTransition(new EventTransition(QEvent::Type(t), s3));
+    t = QEvent::registerEventType();//65533
+    s3->addTransition(new EventTransition(QEvent::Type(t), s1));
 
     //Backward transition
-    s1->addTransition(new EventTransition(QEvent::Type(QEvent::User+4), s3));
-    s3->addTransition(new EventTransition(QEvent::Type(QEvent::User+5), s2));
-    s2->addTransition(new EventTransition(QEvent::Type(QEvent::User+6), s1));
+    t = QEvent::registerEventType();//65532
+    s1->addTransition(new EventTransition(QEvent::Type(t), s3));
+    t = QEvent::registerEventType();//65531
+    s3->addTransition(new EventTransition(QEvent::Type(t), s2));
+    t = QEvent::registerEventType();//65530
+    s2->addTransition(new EventTransition(QEvent::Type(t), s1));
 
 
     m_stateMachine.addState(s1);
@@ -59,11 +65,9 @@ bool LSCApplicationStateMachine::checkStarted(){
     return m_stateMachine.isRunning();
 }
 
-void LSCApplicationStateMachine::switchToState(int stateNum){
-    m_stateMachine.postEvent(new QEvent(QEvent::Type(QEvent::User+stateNum)));
+void LSCApplicationStateMachine::switchToState(int eventNum){
+    m_stateMachine.postEvent(new QEvent(QEvent::Type(eventNum)));
 }
-
-
 
 bool LSCApplicationStateMachine::checkIfInState1() {
     if (m_stateMachine.configuration().contains(s1))
