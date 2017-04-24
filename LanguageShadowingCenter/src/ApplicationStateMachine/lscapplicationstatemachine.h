@@ -15,7 +15,6 @@ License: GPL-3.0
 #include <QPointer>
 #include <QState>
 #include <QList>
-#include <QMap>
 #include <QEventTransition>
 
 /*---------------------- General Application State Machine Library --------------------------*/
@@ -31,18 +30,18 @@ Q_OBJECT
 public:
     LSCApplicationStateMachine();
     bool checkStarted();
-    bool checkIfInState1();
-    bool checkIfInState2();
-    bool checkIfInState3();
-    void switchToState(QString fromToState);
-    void setObjectStateProperty(QObject & obj, QString property);
+    bool checkIfInState(QString state);
+    void switchToState(QString fromState, QString toState);
+    void setObjectStateProperty(QObject & obj, QString state, QString propertyName, QVariant propertyValue);
     Q_SLOT void start();
+    void addStatesTransition(QString fromState, QString toState);
+    void setInitialState(QString initialState);
 
 private:
-    QStateMachine m_stateMachine;
-    QPointer<QState> s1;
-    QPointer<QState> s2;
-    QPointer<QState> s3;
+    QPointer<QStateMachine> m_stateMachine;
+    QMap<QString,QPointer<QState>> m_states;
+    QPointer<QState> getState(QString stateName);
+
 
 public:
 };

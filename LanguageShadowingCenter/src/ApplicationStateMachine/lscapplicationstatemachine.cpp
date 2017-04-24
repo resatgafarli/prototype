@@ -28,66 +28,60 @@ class EventTransition : public QAbstractTransition
 };
 
 
-LSCApplicationStateMachine::LSCApplicationStateMachine()
+LSCApplicationStateMachine::LSCApplicationStateMachine():
+    m_stateMachine (new QStateMachine)
 {
-    s1 = new QState();
-    s2 = new QState();
-    s3 = new QState();
-
-    //Forward transition
-    s1->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState1toState2"), s2));
-    s2->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState2toState3"), s3));
-    s3->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState3toState1"), s1));
-
-    //Backward transition
-    s1->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState1toState3"), s3));
-    s3->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState3toState2"), s2));
-    s2->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType("fromState2toState1"), s1));
-
-    m_stateMachine.addState(s1);
-    m_stateMachine.addState(s2);
-    m_stateMachine.addState(s3);
-    m_stateMachine.setInitialState(s1);
 }
 
-void LSCApplicationStateMachine::setObjectStateProperty(QObject & obj, QString property){
+void LSCApplicationStateMachine::addStatesTransition(QString fromState, QString toState){
 
-    s1->assignProperty(&obj,property.toStdString().c_str(),"STATE1");
-    s2->assignProperty(&obj,property.toStdString().c_str(),"STATE2");
-    s3->assignProperty(&obj,property.toStdString().c_str(),"STATE3");
+    QPointer<QState> stateFrom = getState(fromState);
+    QPointer<QState> stateTo = getState(toState);
+    stateFrom->addTransition(new EventTransition(LSCCustomEventTypeGenereator::getEventType(fromState+toState), stateTo));
+}
+
+
+QPointer<QState> LSCApplicationStateMachine::getState(QString stateName){
+    QPointer<QState> retS;
+    if (m_states.contains(stateName))
+        retS = m_states[stateName];
+    else {
+            retS = new QState;
+            m_stateMachine->addState(retS);
+            m_states[stateName] = retS;
+            retS->setObjectName(stateName);
+    }
+
+    return retS;
+}
+
+
+void LSCApplicationStateMachine::setInitialState(QString initialState){
+    m_stateMachine->setInitialState(getState(initialState));
+}
+
+void LSCApplicationStateMachine::setObjectStateProperty(QObject & obj, QString state, QString propertyName, QVariant propertyValue){
+    getState(state)->assignProperty(&obj,propertyName.toStdString().c_str(),propertyValue);
 }
 
 void LSCApplicationStateMachine::start(){
-    m_stateMachine.start();
+    m_stateMachine->start();
     QCoreApplication::processEvents();
 }
 bool LSCApplicationStateMachine::checkStarted(){
-    return m_stateMachine.isRunning();
+    return m_stateMachine->isRunning();
 }
 
-void LSCApplicationStateMachine::switchToState(QString fromToState){
-    m_stateMachine.postEvent(new QEvent(LSCCustomEventTypeGenereator::getEventType(fromToState)));
+void LSCApplicationStateMachine::switchToState(QString fromState, QString toState){
+    m_stateMachine->postEvent(new QEvent(LSCCustomEventTypeGenereator::getEventType(fromState+toState)));
 }
 
-bool LSCApplicationStateMachine::checkIfInState1() {
-    if (m_stateMachine.configuration().contains(s1))
+bool LSCApplicationStateMachine::checkIfInState(QString state) {
+    if (m_stateMachine->configuration().contains(getState(state)))
         return true;
     else
         return false;
-}
 
-bool LSCApplicationStateMachine::checkIfInState2() {
-    if (m_stateMachine.configuration().contains(s2))
-        return true;
-    else
-        return false;
-}
-
-bool LSCApplicationStateMachine::checkIfInState3(){
-    if (m_stateMachine.configuration().contains(s3))
-        return true;
-    else
-        return false;
 }
 
 /*---------------------- Custom Event Type Generator -------------------------------*/
