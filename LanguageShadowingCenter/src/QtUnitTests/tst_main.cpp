@@ -1,3 +1,10 @@
+/******************************************************
+Author: resat.gafarli@gmail.com
+File: tst_main.cpp
+Date: 4/21/2017
+License: GPL-3.0
+*******************************************************/
+
 #include <QString>
 #include <QtTest>
 #include <tst_appstatemachine.h>

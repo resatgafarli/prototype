@@ -1,3 +1,10 @@
+/******************************************************
+Author: resat.gafarli@gmail.com
+File: tst_AppStateMachine.h
+Date: 4/21/2017
+License: GPL-3.0
+*******************************************************/
+
 #include "lscapplicationstatemachine.h"
 #include <QString>
 #include <QtTest>
