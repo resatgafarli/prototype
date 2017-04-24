@@ -9,6 +9,7 @@ License: GPL-3.0
 #include <QtTest>
 #include <tst_appstatemachine.h>
 #include <tst_episodpreparation.h>
+#include <tst_episodepreparationsm.h>
 
 int main(int argc, char** argv)
 {
@@ -16,6 +17,7 @@ int main(int argc, char** argv)
 
    { tst_CustomEventTypeGenerator tc; QTest::qExec(&tc, argc, argv);}
    { tst_AppStateMachine tc; QTest::qExec(&tc, argc, argv);}
+   { tst_EpisodePreparationSM tc; QTest::qExec(&tc, argc, argv);}
 
    //{ EpisdoPreparationTests tc; QTest::qExec(&tc, argc, argv);}
 

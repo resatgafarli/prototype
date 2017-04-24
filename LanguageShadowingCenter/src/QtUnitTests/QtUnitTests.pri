@@ -1,8 +1,11 @@
 SOURCES += \
-    ../LSCApplicationStateMachine/lscapplicationstatemachine.cpp
+    ../LSCApplicationStateMachine/lscapplicationstatemachine.cpp \
+    ../LSCEpisodePreparation/lscepisodepreparationsm.cpp
 
 HEADERS += \
-    ../LSCApplicationStateMachine/lscapplicationstatemachine.h
+    ../LSCApplicationStateMachine/lscapplicationstatemachine.h \
+    ../LSCEpisodePreparation/lscepisodepreparationsm.h
 
 INCLUDEPATH += \
-    ../LSCApplicationStateMachine
+    ../LSCApplicationStateMachine \
+    ../LSCEpisodePreparation

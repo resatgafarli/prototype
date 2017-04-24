@@ -28,7 +28,8 @@ include(QtUnitTests.pri)
 SOURCES +=  tst_main.cpp
 
 HEADERS += tst_episodpreparation.h \
-            tst_appstatemachine.h
+           tst_appstatemachine.h \
+           tst_episodepreparationsm.h
 
 
 
