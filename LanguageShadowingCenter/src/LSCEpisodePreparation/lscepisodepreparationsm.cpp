@@ -5,6 +5,7 @@ Date: 4/24/2017
 License: GPL-3.0
 *******************************************************/
 #include "lscepisodepreparationsm.h"
+#include "tst_episodepreparationsm.h"
 
 LSCEpisodePreparationSM::LSCEpisodePreparationSM(QObject *parent) : QObject(parent)
 {

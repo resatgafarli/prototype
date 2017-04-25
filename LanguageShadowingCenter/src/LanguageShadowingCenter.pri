@@ -17,3 +17,5 @@ CONFIG(debug, debug|release) {
     RCC_DIR =       $$DESTDIR/outputs/release/rcc
     UI_DIR =        $$DESTDIR/outputs/release/ui
 }
+
+INCLUDEPATH += $$PROJECT_ROOT_DIRECTORY/src/QtUnitTests

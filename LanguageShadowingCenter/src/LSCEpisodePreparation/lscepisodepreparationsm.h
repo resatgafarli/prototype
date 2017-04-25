@@ -10,6 +10,7 @@ License: GPL-3.0
 #include "lscepisodepreparation_global.h"
 #include <QObject>
 
+class tst_EpisodePreparationSM;
 /************** Episode Preparation State Machine ************************/
 class LSCEpisodePreparationSM : public QObject
 {
@@ -17,9 +18,14 @@ class LSCEpisodePreparationSM : public QObject
 public:
     explicit LSCEpisodePreparationSM(QObject *parent = 0);
 
+private:
+    bool den;
+
 signals:
 
 public slots:
+    friend class tst_EpisodePreparationSM;
+
 };
 
 #endif // LSCEPISODEPREPARATIONSM_H
