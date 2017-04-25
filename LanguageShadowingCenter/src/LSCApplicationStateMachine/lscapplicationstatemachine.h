@@ -34,6 +34,7 @@ public:
     Q_SLOT void start();
     void addStatesTransition(QString fromState, QString toState);
     void setInitialState(QString initialState);
+    QString getCurrentState() const;
 
 private:
     QPointer<QStateMachine> m_stateMachine;
