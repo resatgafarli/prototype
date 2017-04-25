@@ -29,7 +29,7 @@ public:
     LSCApplicationStateMachine();
     bool checkStarted();
     bool checkIfInState(QString state);
-    void switchToState(QString fromState, QString toState);
+    void switchToState(QString toState);
     void setObjectStateProperty(QObject & obj, QString state, QString propertyName, QVariant propertyValue);
     Q_SLOT void start();
     void addStatesTransition(QString fromState, QString toState);

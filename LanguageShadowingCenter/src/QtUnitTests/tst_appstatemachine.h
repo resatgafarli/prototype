@@ -35,23 +35,23 @@ private Q_SLOTS:
         QVERIFY(stateMachine.checkIfInState("s1"));
 
         //Forward
-        stateMachine.switchToState("s1","s2");QCoreApplication::processEvents();
+        stateMachine.switchToState("s2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s2"));
 
-        stateMachine.switchToState("s2","s3");QCoreApplication::processEvents();
+        stateMachine.switchToState("s3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s3"));
 
-        stateMachine.switchToState("s3","s1");QCoreApplication::processEvents();
+        stateMachine.switchToState("s1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s1"));
 
         //Backward
-        stateMachine.switchToState("s1","s3");QCoreApplication::processEvents();
+        stateMachine.switchToState("s3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s3"));
 
-        stateMachine.switchToState("s3","s2");QCoreApplication::processEvents();
+        stateMachine.switchToState("s2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s2"));
 
-        stateMachine.switchToState("s2","s1");QCoreApplication::processEvents();
+        stateMachine.switchToState("s1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s1"));
     }
 
@@ -93,20 +93,20 @@ private Q_SLOTS:
         QCOMPARE(obj3.property("property"),QVariant("STATE1"));
 
         //Forward
-        stateMachine.switchToState("s1","s2");QCoreApplication::processEvents();
+        stateMachine.switchToState("s2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s2"));
         QCOMPARE(obj1.property("property"),QVariant("STATE2"));
         QCOMPARE(obj2.property("property"),QVariant("STATE2"));
         QCOMPARE(obj3.property("property"),QVariant("STATE2"));
 
 
-        stateMachine.switchToState("s2","s3");QCoreApplication::processEvents();
+        stateMachine.switchToState("s3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s3"));
         QCOMPARE(obj1.property("property"),QVariant("STATE3"));
         QCOMPARE(obj2.property("property"),QVariant("STATE3"));
         QCOMPARE(obj3.property("property"),QVariant("STATE3"));
 
-        stateMachine.switchToState("s3","s1");QCoreApplication::processEvents();
+        stateMachine.switchToState("s1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s1"));
         QCOMPARE(obj1.property("property"),QVariant("STATE1"));
         QCOMPARE(obj2.property("property"),QVariant("STATE1"));
@@ -114,21 +114,21 @@ private Q_SLOTS:
 
 
         //Backward
-        stateMachine.switchToState("s1","s3");QCoreApplication::processEvents();
+        stateMachine.switchToState("s3");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s3"));
         QCOMPARE(obj1.property("property"),QVariant("STATE3"));
         QCOMPARE(obj2.property("property"),QVariant("STATE3"));
         QCOMPARE(obj3.property("property"),QVariant("STATE3"));
 
 
-        stateMachine.switchToState("s3","s2");QCoreApplication::processEvents();
+        stateMachine.switchToState("s2");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s2"));
         QCOMPARE(obj1.property("property"),QVariant("STATE2"));
         QCOMPARE(obj2.property("property"),QVariant("STATE2"));
         QCOMPARE(obj3.property("property"),QVariant("STATE2"));
 
 
-        stateMachine.switchToState("s2","s1");QCoreApplication::processEvents();
+        stateMachine.switchToState("s1");QCoreApplication::processEvents();
         QVERIFY(stateMachine.checkIfInState("s1"));
         QCOMPARE(obj1.property("property"),QVariant("STATE1"));
         QCOMPARE(obj2.property("property"),QVariant("STATE1"));

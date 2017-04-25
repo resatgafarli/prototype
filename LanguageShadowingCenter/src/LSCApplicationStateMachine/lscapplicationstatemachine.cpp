@@ -72,8 +72,14 @@ bool LSCApplicationStateMachine::checkStarted(){
     return m_stateMachine->isRunning();
 }
 
-void LSCApplicationStateMachine::switchToState(QString fromState, QString toState){
-    m_stateMachine->postEvent(new QEvent(LSCCustomEventTypeGenereator::getEventType(fromState+toState)));
+void LSCApplicationStateMachine::switchToState(QString toState){
+    QSet<QAbstractState *> currentStates = m_stateMachine->configuration();
+    if (!currentStates.isEmpty()){
+        QSet<QAbstractState *>::const_iterator it = currentStates.constBegin();
+        QAbstractState * currentState = *it;
+        m_stateMachine->postEvent(new QEvent(LSCCustomEventTypeGenereator::getEventType(currentState->objectName()+toState)));
+    } //TODO: implement central static messajelogger. implmenet QMessageLogger. Add message here.
+
 }
 
 bool LSCApplicationStateMachine::checkIfInState(QString state) {
