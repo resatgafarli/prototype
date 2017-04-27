@@ -9,6 +9,7 @@ CONFIG(debug, debug|release) {
     MOC_DIR =       $$DESTDIR/outputs/debug/moc
     RCC_DIR =       $$DESTDIR/outputs/debug/rcc
     UI_DIR =        $$DESTDIR/outputs/debug/ui
+    LIBS +=         "-L$$DESTDIR/build/debug"
 
 } else {
     TARGET = $$join(TARGET,,build/release/,)
@@ -16,6 +17,9 @@ CONFIG(debug, debug|release) {
     MOC_DIR =       $$DESTDIR/outputs/release/moc
     RCC_DIR =       $$DESTDIR/outputs/release/rcc
     UI_DIR =        $$DESTDIR/outputs/release/ui
+    LIBS +=         "-L$$DESTDIR/build/release"
 }
 
-INCLUDEPATH += $$PROJECT_ROOT_DIRECTORY/src/QtUnitTests
+INCLUDEPATH += $$PROJECT_ROOT_DIRECTORY/src/QtUnitTests \
+               $$PROJECT_ROOT_DIRECTORY/src/LSCEpisodePreparation
+
