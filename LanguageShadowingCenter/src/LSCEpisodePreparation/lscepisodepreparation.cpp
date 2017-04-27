@@ -19,6 +19,7 @@ LSCEpisodePreparation::LSCEpisodePreparation(QWidget *parent) :
     connect (ui->actionExample_action,SIGNAL(changed()),this,SLOT(actionChanged()));
     ui->actionExample_action->setVisible(true);
     ui->actionExample_action->setEnabled(false);
+
 }
 
 LSCEpisodePreparation::~LSCEpisodePreparation()
@@ -27,10 +28,10 @@ LSCEpisodePreparation::~LSCEpisodePreparation()
 }
 
 void LSCEpisodePreparation::actionChanged(){
-
-    for (QWidget * w: ui->actionExample_action->associatedWidgets()){
-        w->setVisible(ui->actionExample_action->isVisible());
-        w->setEnabled(ui->actionExample_action->isEnabled());
+    QAction * senderAction = static_cast<QAction *> (sender());
+    for (QWidget * w: senderAction->associatedWidgets()){
+        w->setVisible(senderAction->isVisible());
+        w->setEnabled(senderAction->isEnabled());
     }
 
 }
