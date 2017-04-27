@@ -46,8 +46,8 @@ public:
 };
 
 /*---------------------- Custom Event Type Generator -------------------------------*/
-#ifdef APPLICATIONSTATEMACHINE_LIBRARY
-class APPLICATIONSTATEMACHINESHARED_EXPORT LSCCustomEventTypeGenereator: public QObject
+#ifdef LSC_APPLICATIONSTATEMACHINE_LIBRARY
+class LSC_APPLICATIONSTATEMACHINESHARED_EXPORT LSCCustomEventTypeGenereator: public QObject
 #else
 class LSCCustomEventTypeGenereator: public QObject
 #endif
