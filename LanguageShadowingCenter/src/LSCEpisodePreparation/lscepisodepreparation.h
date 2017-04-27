@@ -24,6 +24,8 @@ class LSCEpisodePreparation : public QWidget
 public:
     explicit LSCEpisodePreparation(QWidget *parent = 0);
     ~LSCEpisodePreparation();
+    void showEvent(QShowEvent*w);
+Q_SLOT void actionChanged();
 
 private:
     Ui::LSCEpisodePreparation *ui;

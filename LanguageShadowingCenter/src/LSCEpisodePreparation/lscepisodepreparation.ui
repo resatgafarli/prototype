@@ -6,15 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>459</width>
+    <height>342</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LSCEpisodePreparation</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QComboBox" name="comboBox"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit"/>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+  <action name="actionExample_action">
+   <property name="text">
+    <string>Example action</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
+
