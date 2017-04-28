@@ -5,9 +5,70 @@ Date: 4/24/2017
 License: GPL-3.0
 *******************************************************/
 #include "lscepisodepreparationsm.h"
-#include "tst_episodepreparationsm.h"
+#include "lscepisodepreparation.h"
+#include "lscapplicationstatemachine.h"
+#include <QCoreApplication>
+#include <QDebug>
 
-LSCEpisodePreparationSM::LSCEpisodePreparationSM(QObject *parent) : QObject(parent)
+
+
+LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationAtcsProps> uiActsProps) :  m_uiActsProps(uiActsProps),
+    m_applicationSM(new LSCApplicationStateMachine)
 {
 
+    m_applicationSM->addStatesTransition("INITIAL","STATE1");
+    m_applicationSM->addStatesTransition("STATE1","STATE2");
+    m_applicationSM->addStatesTransition("STATE2","STATE3");
+    m_applicationSM->addStatesTransition("STATE3","STATE4");
+    m_applicationSM->addStatesTransition("STATE4","STATE5");
+    m_applicationSM->addStatesTransition("STATE5","STATE1");
+
+
+    connect(m_uiActsProps->state1Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state2Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state3Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state4Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state5Ac,SIGNAL(changed()),SLOT(actionChanged()));
+
+    //STATE1
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE1","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","enabled",true);
+
+    //STATE2
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE2","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state2Ac,"STATE2","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state2Ac,"STATE2","enabled",true);
+
+    //STATE3
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE3","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state3Ac,"STATE3","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state3Ac,"STATE3","enabled",true);
+
+    //STATE4
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE4","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state4Ac,"STATE4","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state4Ac,"STATE4","enabled",true);
+
+    //STATE5
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE5","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state5Ac,"STATE5","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state5Ac,"STATE5","enabled",false);
+
+    m_applicationSM->setInitialState("INITIAL");
+    m_applicationSM->start();
+}
+
+
+void LSCEpisodePreparationSM::actionChanged(){
+    QAction * senderAction = static_cast<QAction *> (sender());
+    for (QWidget * w: senderAction->associatedWidgets()){
+        w->setVisible(senderAction->isVisible());
+        w->setEnabled(senderAction->isEnabled());
+    }
+}
+
+void LSCEpisodePreparationSM::switchToFirstState(){
+    m_applicationSM->switchToState("STATE1");
+    QCoreApplication::processEvents();
 }

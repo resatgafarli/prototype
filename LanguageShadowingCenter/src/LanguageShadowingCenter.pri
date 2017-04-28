@@ -21,5 +21,6 @@ CONFIG(debug, debug|release) {
 }
 
 INCLUDEPATH += $$PROJECT_ROOT_DIRECTORY/src/QtUnitTests \
-               $$PROJECT_ROOT_DIRECTORY/src/LSCEpisodePreparation
+               $$PROJECT_ROOT_DIRECTORY/src/LSCEpisodePreparation \
+               $$PROJECT_ROOT_DIRECTORY/src/LSCApplicationStateMachine
 

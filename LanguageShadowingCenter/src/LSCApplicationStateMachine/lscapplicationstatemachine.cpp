@@ -60,8 +60,8 @@ void LSCApplicationStateMachine::setInitialState(QString initialState){
     m_stateMachine->setInitialState(getState(initialState));
 }
 
-void LSCApplicationStateMachine::setObjectStateProperty(QObject & obj, QString state, QString propertyName, QVariant propertyValue){
-    getState(state)->assignProperty(&obj,propertyName.toStdString().c_str(),propertyValue);
+void LSCApplicationStateMachine::setObjectStateProperty(QObject * obj, QString state, QString propertyName, QVariant propertyValue){
+    getState(state)->assignProperty(obj,propertyName.toStdString().c_str(),propertyValue);
 }
 
 void LSCApplicationStateMachine::start(){

@@ -12,5 +12,6 @@ SUBDIRS += LanguageShadowingCenter \
 #my_library.subdir = lib
 
 LanguageShadowingCenter.depends = LSCEpisodePreparation
+LSCEpisodePreparation.depends = LSCApplicationStateMachine
     
 CONFIG += debug_and_release

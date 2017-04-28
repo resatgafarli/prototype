@@ -8,6 +8,7 @@ License: GPL-3.0
 #include "lscapplicationstatemachine.h"
 #include <QString>
 #include <QtTest>
+#include <QAction>
 
 class tst_AppStateMachine: public QObject
 {
@@ -67,22 +68,22 @@ private Q_SLOTS:
         stateMachine.addStatesTransition("s2","s1");
         stateMachine.setInitialState("s1");
 
-        QObject obj1,obj2,obj3;
+        QAction obj1,obj2,obj3;
         obj1.setProperty("property","INITIAL");
         obj2.setProperty("property","INITIAL");
         obj3.setProperty("property","INITIAL");
 
-        stateMachine.setObjectStateProperty(obj1,"s1","property","STATE1");
-        stateMachine.setObjectStateProperty(obj1,"s2","property","STATE2");
-        stateMachine.setObjectStateProperty(obj1,"s3","property","STATE3");
+        stateMachine.setObjectStateProperty(&obj1,"s1","property","STATE1");
+        stateMachine.setObjectStateProperty(&obj1,"s2","property","STATE2");
+        stateMachine.setObjectStateProperty(&obj1,"s3","property","STATE3");
 
-        stateMachine.setObjectStateProperty(obj2,"s1","property","STATE1");
-        stateMachine.setObjectStateProperty(obj2,"s2","property","STATE2");
-        stateMachine.setObjectStateProperty(obj2,"s3","property","STATE3");
+        stateMachine.setObjectStateProperty(&obj2,"s1","property","STATE1");
+        stateMachine.setObjectStateProperty(&obj2,"s2","property","STATE2");
+        stateMachine.setObjectStateProperty(&obj2,"s3","property","STATE3");
 
-        stateMachine.setObjectStateProperty(obj3,"s1","property","STATE1");
-        stateMachine.setObjectStateProperty(obj3,"s2","property","STATE2");
-        stateMachine.setObjectStateProperty(obj3,"s3","property","STATE3");
+        stateMachine.setObjectStateProperty(&obj3,"s1","property","STATE1");
+        stateMachine.setObjectStateProperty(&obj3,"s2","property","STATE2");
+        stateMachine.setObjectStateProperty(&obj3,"s3","property","STATE3");
 
 
         stateMachine.start();

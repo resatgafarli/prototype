@@ -2,20 +2,28 @@
 #define LANGUAGESHADOWINGCENTER_H
 
 #include <QMainWindow>
-#include "lscepisodepreparation.h"
+#include <QPointer>
+
+class LSCEpisodePreparation;
+class LSCEpisodePreparationSM;
+
+
 namespace Ui {
 class LanguageShadowingCenter;
 }
+
 
 class LanguageShadowingCenter : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    LSCEpisodePreparation _LSCEpisodePreparation;
+    QPointer<LSCEpisodePreparation> m_LSCEpisodePreparation;
+    QPointer<LSCEpisodePreparationSM> m_LSCEpisodePreparationSM;
     explicit LanguageShadowingCenter(QWidget *parent = 0);
     ~LanguageShadowingCenter();
 
+    void showEvent(QShowEvent *event);
 private:
     Ui::LanguageShadowingCenter *ui;
 };

@@ -13,9 +13,48 @@
   <property name="windowTitle">
    <string>LSCEpisodePreparation</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pbSt1">
+       <property name="text">
+        <string>STATE1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSt2">
+       <property name="text">
+        <string>STATE2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSt3">
+       <property name="text">
+        <string>STATE3</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSt4">
+       <property name="text">
+        <string>STATE4</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSt5">
+       <property name="text">
+        <string>STATE5</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QComboBox" name="comboBox"/>
      </item>
@@ -28,14 +67,8 @@
     </layout>
    </item>
   </layout>
-  <action name="actionExample_action">
-   <property name="text">
-    <string>Example action</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
-

@@ -30,7 +30,7 @@ CONFIG(debug, debug|release) {
 } else {
     LIBS += -lLSCEpisodePreparation
 }
-DEPENDPATH += LSCEpisodePreparation
+
 
 SOURCES += main.cpp\
         languageshadowingcenter.cpp
