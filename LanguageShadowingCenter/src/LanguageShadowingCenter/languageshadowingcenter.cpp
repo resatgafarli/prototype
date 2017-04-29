@@ -20,6 +20,3 @@ LanguageShadowingCenter::~LanguageShadowingCenter()
     delete ui;
 }
 
-void LanguageShadowingCenter::showEvent(QShowEvent *event){
-    m_LSCEpisodePreparationSM->switchToFirstState();
-}

@@ -13,7 +13,7 @@ License: GPL-3.0
 
 int main(int argc, char** argv)
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
 
    { tst_CustomEventTypeGenerator tc; QTest::qExec(&tc, argc, argv);}
    { tst_AppStateMachine tc; QTest::qExec(&tc, argc, argv);}

@@ -40,6 +40,7 @@ protected:
     QPointer<QAction> state5Ac;
 
     friend class LSCEpisodePreparationSM;
+    friend class tst_EpisodePreparationSM;
 };
 
 #ifdef LSC_EPISODEPREPARATION_LIBRARY

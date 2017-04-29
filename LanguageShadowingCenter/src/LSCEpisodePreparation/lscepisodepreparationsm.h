@@ -26,7 +26,7 @@ class LSCEpisodePreparationSM : public QObject
     Q_OBJECT
 public:
     LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationAtcsProps> uiActsProps);
-    void switchToFirstState();
+
 private:
     QPointer<LSCEpisodePreparationAtcsProps> m_uiActsProps;
     QPointer<LSCApplicationStateMachine> m_applicationSM;
@@ -34,6 +34,11 @@ private:
 
 private:
         Q_SLOT void actionChanged();
+        Q_SLOT void state1Triggered(bool);
+        Q_SLOT void state2Triggered(bool);
+        Q_SLOT void state3Triggered(bool);
+        Q_SLOT void state4Triggered(bool);
+        Q_SLOT void state5Triggered(bool);
 
 };
 

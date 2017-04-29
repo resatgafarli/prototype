@@ -25,10 +25,21 @@ LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationA
 
 
     connect(m_uiActsProps->state1Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state1Ac,SIGNAL(triggered(bool)),SLOT(state1Triggered(bool)));
+
     connect(m_uiActsProps->state2Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state2Ac,SIGNAL(triggered(bool)),SLOT(state2Triggered(bool)));
+
     connect(m_uiActsProps->state3Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state3Ac,SIGNAL(triggered(bool)),SLOT(state3Triggered(bool)));
+
     connect(m_uiActsProps->state4Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state4Ac,SIGNAL(triggered(bool)),SLOT(state4Triggered(bool)));
+
+
     connect(m_uiActsProps->state5Ac,SIGNAL(changed()),SLOT(actionChanged()));
+    connect(m_uiActsProps->state5Ac,SIGNAL(triggered(bool)),SLOT(state5Triggered(bool)));
+
 
     //STATE1
     m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE1","visible",false);
@@ -68,7 +79,25 @@ void LSCEpisodePreparationSM::actionChanged(){
     }
 }
 
-void LSCEpisodePreparationSM::switchToFirstState(){
+void LSCEpisodePreparationSM::state1Triggered(bool){
     m_applicationSM->switchToState("STATE1");
-    QCoreApplication::processEvents();
 }
+
+void LSCEpisodePreparationSM::state2Triggered(bool){
+    m_applicationSM->switchToState("STATE2");
+
+}
+
+void LSCEpisodePreparationSM::state3Triggered(bool){
+    m_applicationSM->switchToState("STATE3");
+}
+
+void LSCEpisodePreparationSM::state4Triggered(bool){
+    m_applicationSM->switchToState("STATE4");
+}
+
+void LSCEpisodePreparationSM::state5Triggered(bool){
+    m_applicationSM->switchToState("STATE5");
+}
+
+

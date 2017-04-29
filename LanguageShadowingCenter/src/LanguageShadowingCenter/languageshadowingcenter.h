@@ -23,7 +23,6 @@ public:
     explicit LanguageShadowingCenter(QWidget *parent = 0);
     ~LanguageShadowingCenter();
 
-    void showEvent(QShowEvent *event);
 private:
     Ui::LanguageShadowingCenter *ui;
 };

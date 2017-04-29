@@ -6,6 +6,9 @@ License: GPL-3.0
 *******************************************************/
 #include <QString>
 #include <QtTest>
+#include "lscepisodepreparationsm.h"
+#include "lscepisodepreparation.h"
+
 
 class tst_EpisodePreparationSM : public QObject
 {
@@ -17,7 +20,15 @@ public:
 private Q_SLOTS:
     void testCase1()
     {
-        QVERIFY2(true, "Failure");
+        QPointer<LSCEpisodePreparation> ep = new LSCEpisodePreparation;
+        QPointer<LSCEpisodePreparationSM> epSM = new
+                LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationAtcsProps>>(ep));
+
+        ep->state1Ac->trigger();
+
+        QCOMPARE(ep->state1Ac->isVisible(), true);
+        QCOMPARE(ep->state1Ac->isEnabled(), true);
+        //TODO: after action state check related UI statess should be checked.
     }
 };
 
