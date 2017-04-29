@@ -7,19 +7,35 @@ License: GPL-3.0
 #include <QString>
 #include <QtTest>
 
-class EpisdoPreparationTests : public QObject
+class tst_EpisodePreparationSM : public QObject
 {
     Q_OBJECT
 
 public:
-    EpisdoPreparationTests(){};
+    tst_EpisodePreparationSM(){};
 
 private Q_SLOTS:
-    void episodePlayerStateMachineTest()
+    void testCase1()
     {
         QVERIFY2(true, "Failure");
     }
 };
+
+class tst_EpisdoPreparation : public QObject
+{
+    Q_OBJECT
+
+public:
+    tst_EpisdoPreparation(){};
+
+private Q_SLOTS:
+    void testCase1()
+    {
+        QVERIFY2(true, "Failure");
+    }
+};
+
+
 
 
 

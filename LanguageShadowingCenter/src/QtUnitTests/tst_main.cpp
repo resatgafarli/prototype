@@ -10,7 +10,6 @@ License: GPL-3.0
 #include <tst_example_mediator_isolation.h>
 #include <tst_appstatemachine.h>
 #include <tst_episodpreparation.h>
-#include <tst_episodepreparationsm.h>
 
 int main(int argc, char** argv)
 {
@@ -19,7 +18,7 @@ int main(int argc, char** argv)
    { tst_CustomEventTypeGenerator tc; QTest::qExec(&tc, argc, argv);}
    { tst_AppStateMachine tc; QTest::qExec(&tc, argc, argv);}
    { tst_EpisodePreparationSM tc; QTest::qExec(&tc, argc, argv);}
-   { EpisdoPreparationTests tc; QTest::qExec(&tc, argc, argv);}
+   { tst_EpisdoPreparation tc; QTest::qExec(&tc, argc, argv);}
    //{ tst_TestMediatorClass tc; QTest::qExec(&tc, argc, argv);}
    //{ tst_TestMediatorControlClass tc;QTest::qExec(&tc, argc, argv);}
 
