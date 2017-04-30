@@ -24,11 +24,11 @@ private Q_SLOTS:
         QPointer<LSCEpisodePreparationSM> epSM = new
                 LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationAtcsProps>>(ep));
 
-        ep->state1Ac->trigger();
+        ep->state1Ac->trigger(); QApplication::processEvents();
+        //TODO COMPARE UI STATES
+        ep->state2Ac->trigger();QApplication::processEvents();
+        //TODO COMPARE UI STATES
 
-        QCOMPARE(ep->state1Ac->isVisible(), true);
-        QCOMPARE(ep->state1Ac->isEnabled(), true);
-        //TODO: after action state check related UI statess should be checked.
     }
 };
 

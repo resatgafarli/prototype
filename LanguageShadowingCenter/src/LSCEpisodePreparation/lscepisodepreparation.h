@@ -15,7 +15,7 @@ namespace Ui {
 class LSCEpisodePreparation;
 }
 
-class LSCEpisodePreparationSM;
+
 
 class LSCEpisodePreparationAtcsProps: public QWidget{
 
@@ -32,6 +32,8 @@ public:
     }
 
 protected:
+
+    /*TODO: This actions should be clarified in terms of SM Trigger or UseCase !!!!*/
     QPointer<QAction> generalAc;
     QPointer<QAction> state1Ac;
     QPointer<QAction> state2Ac;
@@ -56,6 +58,9 @@ public:
     ~LSCEpisodePreparation();
     void showEvent(QShowEvent*w);
 
+
+private slots:
+    void on_pbSt1_clicked();
 
 private:
     Ui::LSCEpisodePreparation *ui;

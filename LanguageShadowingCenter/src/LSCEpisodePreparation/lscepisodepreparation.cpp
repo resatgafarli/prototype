@@ -63,3 +63,8 @@ LSCEpisodePreparation::~LSCEpisodePreparation()
 void LSCEpisodePreparation::showEvent(QShowEvent*w){
 
 }
+
+void LSCEpisodePreparation::on_pbSt1_clicked()
+{
+    state1Ac->trigger();
+}

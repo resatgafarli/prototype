@@ -41,10 +41,19 @@ LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationA
     connect(m_uiActsProps->state5Ac,SIGNAL(triggered(bool)),SLOT(state5Triggered(bool)));
 
 
+    //INITIAL
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"INITIAL","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state2Ac,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state3Ac,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state4Ac,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state5Ac,"INITIAL","visible",false);
+
+
+
     //STATE1
     m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE1","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","visible",true);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","enabled",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","enabled",false);
 
     //STATE2
     m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE2","visible",false);

@@ -94,7 +94,6 @@ bool LSCApplicationStateMachine::checkIfInState(QString state) {
         return true;
     else
         return false;
-
 }
 
 /*---------------------- Custom Event Type Generator -------------------------------*/
