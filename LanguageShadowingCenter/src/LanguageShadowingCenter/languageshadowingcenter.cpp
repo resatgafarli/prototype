@@ -1,5 +1,7 @@
 #include "languageshadowingcenter.h"
 #include "ui_languageshadowingcenter.h"
+#include "lscepisodepreparation.h"
+#include "lscepisodepreparationsm.h"
 
 
 LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
@@ -7,7 +9,10 @@ LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
     ui(new Ui::LanguageShadowingCenter)
 {
     ui->setupUi(this);
-    _LSCEpisodePreparation.show();
+    m_LSCEpisodePreparation = new LSCEpisodePreparation;
+
+    m_LSCEpisodePreparationSM = new LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationActsProps>>(m_LSCEpisodePreparation));
+    m_LSCEpisodePreparation->show();
 }
 
 LanguageShadowingCenter::~LanguageShadowingCenter()
