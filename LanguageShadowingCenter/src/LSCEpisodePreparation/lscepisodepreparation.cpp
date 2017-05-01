@@ -6,7 +6,7 @@ License: GPL-3.0
 *******************************************************/
 #include "lscepisodepreparation.h"
 #include "ui_lscepisodepreparation.h"
-#include <QGraphicsWidget>
+#include <QDebug>
 
 /*------------------------ LSCEpisodePreparationAtcsProps ----------------------------------*/
 void LSCEpisodePreparationAtcsProps::setActionsChangeSignals(){
@@ -55,7 +55,6 @@ void LSCEpisodePreparation::on_pbSt1_clicked()
     pbSt1Ac->trigger();
 }
 
-
 void LSCEpisodePreparation::on_pbSt2_clicked()
 {
     pbSt2Ac->trigger();
@@ -76,4 +75,15 @@ void LSCEpisodePreparation::on_pbSt5_clicked()
     pbSt5Ac->trigger();
 }
 
+void LSCEpisodePreparation::startStopDoSomeThing(bool s){
+    do_some_thing = s;
+    if (do_some_thing == true)
+        qDebug()<<"Start do something"<<endl;
+    else
+        qDebug()<<"Stop do something"<<endl;
+}
+
+bool LSCEpisodePreparation::isDoSomeThing(){
+    return do_some_thing;
+}
 

@@ -52,6 +52,8 @@ LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationA
 
 
     //STATE2
+    m_applicationSM->setObjectStateProperty(m_uiActsProps,"STATE2","do_some_thing",true);
+
     m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"STATE2","visible",false);
     m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"STATE2","visible",false);
     m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"STATE2","visible",true);
@@ -62,6 +64,8 @@ LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationA
     m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE2","visible",true);
 
     //STATE3
+    m_applicationSM->setObjectStateProperty(m_uiActsProps,"STATE3","do_some_thing",false);
+
     m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"STATE3","visible",false);
     m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"STATE3","visible",false);
     m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"STATE3","visible",false);

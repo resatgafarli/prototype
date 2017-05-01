@@ -19,6 +19,8 @@ class LSCEpisodePreparation;
 
 class LSCEpisodePreparationAtcsProps: public QWidget{
     Q_OBJECT
+    Q_PROPERTY (bool do_some_thing READ isDoSomeThing  WRITE startStopDoSomeThing)
+
 public:
     explicit LSCEpisodePreparationAtcsProps(QWidget *parent = 0):QWidget(parent),
         pbSt1Ac(new QAction(this)),
@@ -28,10 +30,12 @@ public:
         pbSt5Ac(new QAction(this)),
         comboAc(new QAction(this)),
         lineEAc(new QAction(this)),
-        plainTextEAc(new QAction(this))
+        plainTextEAc(new QAction(this)),
+        do_some_thing (false)
     {
         setActionsChangeSignals();
     }
+
     Q_SLOT void actionChanged();
 protected:
 
@@ -46,6 +50,10 @@ protected:
     QPointer<QAction> plainTextEAc;
 
     void setActionsChangeSignals();
+
+    bool do_some_thing;
+    virtual void startStopDoSomeThing(bool)=0;
+    virtual bool isDoSomeThing() = 0;
 
 
     friend class LSCEpisodePreparationSM;
@@ -73,6 +81,10 @@ private slots:
     void on_pbSt5_clicked();
 
 private:
+    void startStopDoSomeThing(bool);
+    bool isDoSomeThing();
+
+
     Ui::LSCEpisodePreparation *ui;
 };
 
