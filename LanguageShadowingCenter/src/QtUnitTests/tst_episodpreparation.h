@@ -11,6 +11,21 @@ License: GPL-3.0
 #include "lscapplicationstatemachine.h"
 
 
+class tst_LSCEpisodePreparationActsProps :public LSCEpisodePreparationActsProps{
+
+public:
+    tst_LSCEpisodePreparationActsProps(){}
+
+    void startStopDoSomeThing(bool s){
+        QVERIFY (do_some_thing != s);
+        do_some_thing = s;
+    }
+
+    bool isDoSomeThing(){
+        return do_some_thing;
+    }
+};
+
 class tst_EpisodePreparationSM : public QObject
 {
     Q_OBJECT
@@ -21,9 +36,9 @@ public:
 private Q_SLOTS:
     void testCase1()
     {
-        QPointer<LSCEpisodePreparation> ep = new LSCEpisodePreparation;
+        QPointer<tst_LSCEpisodePreparationActsProps> ep = new tst_LSCEpisodePreparationActsProps;
         QPointer<LSCEpisodePreparationSM> epSM = new
-                LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationAtcsProps>>(ep));
+                LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationActsProps>>(ep));
 
 
         QCOMPARE(epSM->m_applicationSM->getCurrentState(),QString("INITIAL"));
@@ -31,8 +46,11 @@ private Q_SLOTS:
         QCOMPARE(ep->pbSt2Ac->isVisible(),false);
 
 
-/*        ep->pbSt1Ac->trigger(); QApplication::processEvents();
-        QCOMPARE(epSM->m_applicationSM->getCurrentState(),QString("STATE1"));
+        ep->pbSt1Ac->trigger(); QApplication::processEvents();
+        ep->pbSt2Ac->trigger(); QApplication::processEvents();
+        ep->pbSt3Ac->trigger(); QApplication::processEvents();
+
+/*        QCOMPARE(epSM->m_applicationSM->getCurrentState(),QString("STATE1"));
         QCOMPARE(ep->pbSt1Ac->isVisible(),true);
         QCOMPARE(ep->pbSt2Ac->isVisible(),false);
 

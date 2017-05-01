@@ -12,7 +12,7 @@ License: GPL-3.0
 
 
 
-LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationAtcsProps> uiActsProps) :  m_uiActsProps(uiActsProps),
+LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationActsProps> uiActsProps) :  m_uiActsProps(uiActsProps),
     m_applicationSM(new LSCApplicationStateMachine)
 {
 

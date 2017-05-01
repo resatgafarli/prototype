@@ -9,14 +9,14 @@ License: GPL-3.0
 #include <QDebug>
 
 /*------------------------ LSCEpisodePreparationAtcsProps ----------------------------------*/
-void LSCEpisodePreparationAtcsProps::setActionsChangeSignals(){
+void LSCEpisodePreparationActsProps::setActionsChangeSignals(){
    QList<QAction*> actionList = findChildren<QAction*>(QString(""),Qt::FindDirectChildrenOnly);
    for (auto c :actionList){
        connect(c,SIGNAL(changed()),this,SLOT(actionChanged()));
    }
 }
 
-void LSCEpisodePreparationAtcsProps::actionChanged(){
+void LSCEpisodePreparationActsProps::actionChanged(){
     QAction * senderAction = static_cast<QAction *> (sender());
     for (QWidget * w: senderAction->associatedWidgets()){
         w->setVisible(senderAction->isVisible());
@@ -26,7 +26,7 @@ void LSCEpisodePreparationAtcsProps::actionChanged(){
 
 
 /*------------------------ LSCEpisodePreparation ----------------------------------*/
-LSCEpisodePreparation::LSCEpisodePreparation(QWidget *parent):LSCEpisodePreparationAtcsProps(parent),
+LSCEpisodePreparation::LSCEpisodePreparation(QWidget *parent):LSCEpisodePreparationActsProps(parent),
     ui(new Ui::LSCEpisodePreparation)
 {
     ui->setupUi(this);

@@ -11,7 +11,7 @@ LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
     ui->setupUi(this);
     m_LSCEpisodePreparation = new LSCEpisodePreparation;
 
-    m_LSCEpisodePreparationSM = new LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationAtcsProps>>(m_LSCEpisodePreparation));
+    m_LSCEpisodePreparationSM = new LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationActsProps>>(m_LSCEpisodePreparation));
     m_LSCEpisodePreparation->show();
 }
 

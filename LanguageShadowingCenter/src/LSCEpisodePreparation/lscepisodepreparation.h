@@ -17,12 +17,12 @@ class LSCEpisodePreparation;
 
 
 
-class LSCEpisodePreparationAtcsProps: public QWidget{
+class LSCEpisodePreparationActsProps: public QWidget{
     Q_OBJECT
     Q_PROPERTY (bool do_some_thing READ isDoSomeThing  WRITE startStopDoSomeThing)
 
 public:
-    explicit LSCEpisodePreparationAtcsProps(QWidget *parent = 0):QWidget(parent),
+    explicit LSCEpisodePreparationActsProps(QWidget *parent = 0):QWidget(parent),
         pbSt1Ac(new QAction(this)),
         pbSt2Ac(new QAction(this)),
         pbSt3Ac(new QAction(this)),
@@ -61,9 +61,9 @@ protected:
 };
 
 #ifdef LSC_EPISODEPREPARATION_LIBRARY
-class LSC_EPISODEPREPARATIONSHARED_EXPORT LSCEpisodePreparation : public LSCEpisodePreparationAtcsProps
+class LSC_EPISODEPREPARATIONSHARED_EXPORT LSCEpisodePreparation : public LSCEpisodePreparationActsProps
 #else
-class LSCEpisodePreparation : public LSCEpisodePreparationAtcsProps
+class LSCEpisodePreparation : public LSCEpisodePreparationActsProps
 #endif
 {
     Q_OBJECT

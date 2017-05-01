@@ -13,7 +13,7 @@ License: GPL-3.0
 
 
 class LSCApplicationStateMachine;
-class LSCEpisodePreparationAtcsProps;
+class LSCEpisodePreparationActsProps;
 
 
 /************** Episode Preparation State Machine ************************/
@@ -25,10 +25,10 @@ class LSCEpisodePreparationSM : public QObject
 {
     Q_OBJECT
 public:
-    LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationAtcsProps> uiActsProps);
+    LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationActsProps> uiActsProps);
 
 private:
-    QPointer<LSCEpisodePreparationAtcsProps> m_uiActsProps;
+    QPointer<LSCEpisodePreparationActsProps> m_uiActsProps;
     QPointer<LSCApplicationStateMachine> m_applicationSM;
 
 
