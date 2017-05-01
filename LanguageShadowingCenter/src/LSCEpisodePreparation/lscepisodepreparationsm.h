@@ -33,12 +33,13 @@ private:
 
 
 private:
-        Q_SLOT void actionChanged();
         Q_SLOT void state1Triggered(bool);
         Q_SLOT void state2Triggered(bool);
         Q_SLOT void state3Triggered(bool);
         Q_SLOT void state4Triggered(bool);
         Q_SLOT void state5Triggered(bool);
+
+    friend class tst_EpisodePreparationSM;
 
 };
 

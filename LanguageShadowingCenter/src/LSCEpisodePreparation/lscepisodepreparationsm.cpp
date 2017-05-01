@@ -23,70 +23,84 @@ LSCEpisodePreparationSM::LSCEpisodePreparationSM(QPointer<LSCEpisodePreparationA
     m_applicationSM->addStatesTransition("STATE4","STATE5");
     m_applicationSM->addStatesTransition("STATE5","STATE1");
 
-
-    connect(m_uiActsProps->state1Ac,SIGNAL(changed()),SLOT(actionChanged()));
-    connect(m_uiActsProps->state1Ac,SIGNAL(triggered(bool)),SLOT(state1Triggered(bool)));
-
-    connect(m_uiActsProps->state2Ac,SIGNAL(changed()),SLOT(actionChanged()));
-    connect(m_uiActsProps->state2Ac,SIGNAL(triggered(bool)),SLOT(state2Triggered(bool)));
-
-    connect(m_uiActsProps->state3Ac,SIGNAL(changed()),SLOT(actionChanged()));
-    connect(m_uiActsProps->state3Ac,SIGNAL(triggered(bool)),SLOT(state3Triggered(bool)));
-
-    connect(m_uiActsProps->state4Ac,SIGNAL(changed()),SLOT(actionChanged()));
-    connect(m_uiActsProps->state4Ac,SIGNAL(triggered(bool)),SLOT(state4Triggered(bool)));
-
-
-    connect(m_uiActsProps->state5Ac,SIGNAL(changed()),SLOT(actionChanged()));
-    connect(m_uiActsProps->state5Ac,SIGNAL(triggered(bool)),SLOT(state5Triggered(bool)));
+    connect(m_uiActsProps->pbSt1Ac,SIGNAL(triggered(bool)),SLOT(state1Triggered(bool)));
+    connect(m_uiActsProps->pbSt2Ac,SIGNAL(triggered(bool)),SLOT(state2Triggered(bool)));
+    connect(m_uiActsProps->pbSt3Ac,SIGNAL(triggered(bool)),SLOT(state3Triggered(bool)));
+    connect(m_uiActsProps->pbSt4Ac,SIGNAL(triggered(bool)),SLOT(state4Triggered(bool)));
+    connect(m_uiActsProps->pbSt5Ac,SIGNAL(triggered(bool)),SLOT(state5Triggered(bool)));
 
 
     //INITIAL
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"INITIAL","visible",true);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state2Ac,"INITIAL","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state3Ac,"INITIAL","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state4Ac,"INITIAL","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state5Ac,"INITIAL","visible",false);
-
-
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"INITIAL","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt4Ac,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt5Ac,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"INITIAL","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"INITIAL","visible",false);
 
     //STATE1
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE1","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state1Ac,"STATE1","enabled",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"STATE1","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"STATE1","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"STATE1","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt4Ac,"STATE1","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt5Ac,"STATE1","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"STATE1","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"STATE1","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE1","visible",true);
+
 
     //STATE2
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE2","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state2Ac,"STATE2","visible",true);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state2Ac,"STATE2","enabled",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"STATE2","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"STATE2","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"STATE2","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt4Ac,"STATE2","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt5Ac,"STATE2","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"STATE2","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"STATE2","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE2","visible",true);
 
     //STATE3
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE3","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state3Ac,"STATE3","visible",true);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state3Ac,"STATE3","enabled",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"STATE3","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"STATE3","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"STATE3","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt4Ac,"STATE3","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt5Ac,"STATE3","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"STATE3","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"STATE3","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE3","visible",false);
 
     //STATE4
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE4","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state4Ac,"STATE4","visible",true);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state4Ac,"STATE4","enabled",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"STATE4","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"STATE4","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"STATE4","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt4Ac,"STATE4","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt5Ac,"STATE4","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"STATE4","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"STATE4","enabled",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"STATE4","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"STATE4","enabled",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE4","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE4","enabled",false);
 
     //STATE5
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->generalAc,"STATE5","visible",false);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state5Ac,"STATE5","visible",true);
-    m_applicationSM->setObjectStateProperty(m_uiActsProps->state5Ac,"STATE5","enabled",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt1Ac,"STATE5","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt2Ac,"STATE5","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt3Ac,"STATE5","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt4Ac,"STATE5","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->pbSt5Ac,"STATE5","visible",false);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"STATE5","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->lineEAc,"STATE5","enabled",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"STATE5","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->comboAc,"STATE5","enabled",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE5","visible",true);
+    m_applicationSM->setObjectStateProperty(m_uiActsProps->plainTextEAc,"STATE5","enabled",true);
 
     m_applicationSM->setInitialState("INITIAL");
     m_applicationSM->start();
 }
 
-
-void LSCEpisodePreparationSM::actionChanged(){
-    QAction * senderAction = static_cast<QAction *> (sender());
-    for (QWidget * w: senderAction->associatedWidgets()){
-        w->setVisible(senderAction->isVisible());
-        w->setEnabled(senderAction->isEnabled());
-    }
-}
 
 void LSCEpisodePreparationSM::state1Triggered(bool){
     m_applicationSM->switchToState("STATE1");

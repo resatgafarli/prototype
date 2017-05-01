@@ -18,28 +18,35 @@ class LSCEpisodePreparation;
 
 
 class LSCEpisodePreparationAtcsProps: public QWidget{
-
+    Q_OBJECT
 public:
     explicit LSCEpisodePreparationAtcsProps(QWidget *parent = 0):QWidget(parent),
-        generalAc(new QAction),
-        state1Ac(new QAction),
-        state2Ac(new QAction),
-        state3Ac(new QAction),
-        state4Ac(new QAction),
-        state5Ac(new QAction)
+        pbSt1Ac(new QAction(this)),
+        pbSt2Ac(new QAction(this)),
+        pbSt3Ac(new QAction(this)),
+        pbSt4Ac(new QAction(this)),
+        pbSt5Ac(new QAction(this)),
+        comboAc(new QAction(this)),
+        lineEAc(new QAction(this)),
+        plainTextEAc(new QAction(this))
     {
-
+        setActionsChangeSignals();
     }
-
+    Q_SLOT void actionChanged();
 protected:
 
     /*TODO: This actions should be clarified in terms of SM Trigger or UseCase !!!!*/
-    QPointer<QAction> generalAc;
-    QPointer<QAction> state1Ac;
-    QPointer<QAction> state2Ac;
-    QPointer<QAction> state3Ac;
-    QPointer<QAction> state4Ac;
-    QPointer<QAction> state5Ac;
+    QPointer<QAction> pbSt1Ac;
+    QPointer<QAction> pbSt2Ac;
+    QPointer<QAction> pbSt3Ac;
+    QPointer<QAction> pbSt4Ac;
+    QPointer<QAction> pbSt5Ac;
+    QPointer<QAction> comboAc;
+    QPointer<QAction> lineEAc;
+    QPointer<QAction> plainTextEAc;
+
+    void setActionsChangeSignals();
+
 
     friend class LSCEpisodePreparationSM;
     friend class tst_EpisodePreparationSM;
@@ -56,11 +63,14 @@ class LSCEpisodePreparation : public LSCEpisodePreparationAtcsProps
 public:
     explicit LSCEpisodePreparation(QWidget *parent = 0);
     ~LSCEpisodePreparation();
-    void showEvent(QShowEvent*w);
 
 
 private slots:
     void on_pbSt1_clicked();
+    void on_pbSt2_clicked();
+    void on_pbSt3_clicked();
+    void on_pbSt4_clicked();
+    void on_pbSt5_clicked();
 
 private:
     Ui::LSCEpisodePreparation *ui;

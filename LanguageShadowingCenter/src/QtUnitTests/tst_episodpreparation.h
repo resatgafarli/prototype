@@ -8,6 +8,7 @@ License: GPL-3.0
 #include <QtTest>
 #include "lscepisodepreparationsm.h"
 #include "lscepisodepreparation.h"
+#include "lscapplicationstatemachine.h"
 
 
 class tst_EpisodePreparationSM : public QObject
@@ -24,11 +25,21 @@ private Q_SLOTS:
         QPointer<LSCEpisodePreparationSM> epSM = new
                 LSCEpisodePreparationSM(static_cast<QPointer<LSCEpisodePreparationAtcsProps>>(ep));
 
-        ep->state1Ac->trigger(); QApplication::processEvents();
-        //TODO COMPARE UI STATES
-        ep->state2Ac->trigger();QApplication::processEvents();
-        //TODO COMPARE UI STATES
 
+        QCOMPARE(epSM->m_applicationSM->getCurrentState(),QString("INITIAL"));
+        QCOMPARE(ep->pbSt1Ac->isVisible(),true);
+        QCOMPARE(ep->pbSt2Ac->isVisible(),false);
+
+
+/*        ep->pbSt1Ac->trigger(); QApplication::processEvents();
+        QCOMPARE(epSM->m_applicationSM->getCurrentState(),QString("STATE1"));
+        QCOMPARE(ep->pbSt1Ac->isVisible(),true);
+        QCOMPARE(ep->pbSt2Ac->isVisible(),false);
+
+
+        ep->pbSt2Ac->trigger();QApplication::processEvents();
+        QCOMPARE(epSM->m_applicationSM->getCurrentState(),QString("STATE2"));
+*/
     }
 };
 

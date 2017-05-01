@@ -8,49 +8,39 @@ License: GPL-3.0
 #include "ui_lscepisodepreparation.h"
 #include <QGraphicsWidget>
 
+/*------------------------ LSCEpisodePreparationAtcsProps ----------------------------------*/
+void LSCEpisodePreparationAtcsProps::setActionsChangeSignals(){
+   QList<QAction*> actionList = findChildren<QAction*>(QString(""),Qt::FindDirectChildrenOnly);
+   for (auto c :actionList){
+       connect(c,SIGNAL(changed()),this,SLOT(actionChanged()));
+   }
+}
+
+void LSCEpisodePreparationAtcsProps::actionChanged(){
+    QAction * senderAction = static_cast<QAction *> (sender());
+    for (QWidget * w: senderAction->associatedWidgets()){
+        w->setVisible(senderAction->isVisible());
+        w->setEnabled(senderAction->isEnabled());
+    }
+}
+
+
+/*------------------------ LSCEpisodePreparation ----------------------------------*/
 LSCEpisodePreparation::LSCEpisodePreparation(QWidget *parent):LSCEpisodePreparationAtcsProps(parent),
     ui(new Ui::LSCEpisodePreparation)
 {
     ui->setupUi(this);
 
    //In order to disable all UI'S all widgets should be added in generalAc assotiation list.
-   ui->comboBox->addAction(generalAc);
-   ui->lineEdit->addAction(generalAc);
-   ui->plainTextEdit->addAction(generalAc);
+    ui->pbSt1->addAction(pbSt1Ac);
+    ui->pbSt2->addAction(pbSt2Ac);
+    ui->pbSt3->addAction(pbSt3Ac);
+    ui->pbSt4->addAction(pbSt4Ac);
+    ui->pbSt5->addAction(pbSt5Ac);
 
-   ui->pbSt1->addAction(generalAc);
-   ui->pbSt2->addAction(generalAc);
-   ui->pbSt3->addAction(generalAc);
-   ui->pbSt4->addAction(generalAc);
-   ui->pbSt5->addAction(generalAc);
-
-   //STATE1
-   ui->pbSt1->addAction(state1Ac);
-   ui->comboBox->addAction(state1Ac);
-   ui->lineEdit->addAction(state1Ac);
-
-   //STATE2
-   ui->pbSt2->addAction(state2Ac);
-   ui->lineEdit->addAction(state2Ac);
-   ui->plainTextEdit->addAction(state2Ac);
-
-   //STATE3
-   ui->pbSt3->addAction(state3Ac);
-   ui->comboBox->addAction(state3Ac);
-   ui->plainTextEdit->addAction(state3Ac);
-
-   //STATE4
-   ui->pbSt4->addAction(state4Ac);
-   ui->comboBox->addAction(state4Ac);
-   ui->plainTextEdit->addAction(state4Ac);
-   ui->lineEdit->addAction(state4Ac);
-
-   //STATE5
-   ui->pbSt5->addAction(state5Ac);
-   ui->comboBox->addAction(state5Ac);
-   ui->plainTextEdit->addAction(state5Ac);
-   ui->lineEdit->addAction(state5Ac);
-
+    ui->lineEdit->addAction(lineEAc);
+    ui->comboBox->addAction(comboAc);
+    ui->plainTextEdit->addAction(plainTextEAc);
 }
 
 LSCEpisodePreparation::~LSCEpisodePreparation()
@@ -60,11 +50,30 @@ LSCEpisodePreparation::~LSCEpisodePreparation()
 
 
 
-void LSCEpisodePreparation::showEvent(QShowEvent*w){
-
-}
-
 void LSCEpisodePreparation::on_pbSt1_clicked()
 {
-    state1Ac->trigger();
+    pbSt1Ac->trigger();
 }
+
+
+void LSCEpisodePreparation::on_pbSt2_clicked()
+{
+    pbSt2Ac->trigger();
+}
+
+void LSCEpisodePreparation::on_pbSt3_clicked()
+{
+    pbSt3Ac->trigger();
+}
+
+void LSCEpisodePreparation::on_pbSt4_clicked()
+{
+    pbSt4Ac->trigger();
+}
+
+void LSCEpisodePreparation::on_pbSt5_clicked()
+{
+    pbSt5Ac->trigger();
+}
+
+
