@@ -35,8 +35,10 @@ public:
     void addStatesTransition(QString fromState, QString toState);
     void setInitialState(QString initialState);
     QString getCurrentState() const;
+    QString getPrevState() const;
 
 private:
+    QString m_prevState;
     QPointer<QStateMachine> m_stateMachine;
     QMap<QString,QPointer<QState>> m_states;
     QPointer<QState> getState(QString stateName);

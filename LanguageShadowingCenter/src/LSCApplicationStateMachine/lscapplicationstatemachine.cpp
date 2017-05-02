@@ -29,6 +29,7 @@ class EventTransition : public QAbstractTransition
 
 
 LSCApplicationStateMachine::LSCApplicationStateMachine():
+    m_prevState(""),
     m_stateMachine (new QStateMachine)
 {
 }
@@ -57,6 +58,7 @@ QPointer<QState> LSCApplicationStateMachine::getState(QString stateName){
 
 
 void LSCApplicationStateMachine::setInitialState(QString initialState){
+    m_prevState = initialState;
     m_stateMachine->setInitialState(getState(initialState));
 }
 
@@ -84,8 +86,13 @@ QString LSCApplicationStateMachine::getCurrentState() const{
     return ret;
 }
 
+QString LSCApplicationStateMachine::getPrevState() const{
+    return m_prevState;
+}
+
 void LSCApplicationStateMachine::switchToState(QString toState){
-     m_stateMachine->postEvent(new QEvent(LSCCustomEventTypeGenereator::getEventType(getCurrentState()+toState)));
+     m_prevState = getCurrentState();
+     m_stateMachine->postEvent(new QEvent(LSCCustomEventTypeGenereator::getEventType(m_prevState+toState)));
      //TODO: implement central static messajelogger. implmenet QMessageLogger. Add message here.
 }
 
