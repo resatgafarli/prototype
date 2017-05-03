@@ -13,7 +13,7 @@ class LanguageShadowingCenter;
 }
 
 
-class LanguageShadowingCenter : public QMainWindow
+class LanguageShadowingCenter : public QObject
 {
     Q_OBJECT
 

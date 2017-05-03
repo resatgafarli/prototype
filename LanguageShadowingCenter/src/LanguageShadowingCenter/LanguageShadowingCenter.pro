@@ -37,7 +37,7 @@ SOURCES += main.cpp\
 
 HEADERS  += languageshadowingcenter.h
 
-FORMS    += languageshadowingcenter.ui
+FORMS    +=
 
 
 
