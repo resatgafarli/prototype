@@ -10,6 +10,7 @@ CONFIG(debug, debug|release) {
     RCC_DIR =       $$DESTDIR/outputs/debug/rcc
     UI_DIR =        $$DESTDIR/outputs/debug/ui
     LIBS +=         "-L$$DESTDIR/build/debug"
+    COPYDIR =       $$DESTDIR/build/debug/
 
 } else {
     TARGET = $$join(TARGET,,build/release/,)
@@ -18,6 +19,7 @@ CONFIG(debug, debug|release) {
     RCC_DIR =       $$DESTDIR/outputs/release/rcc
     UI_DIR =        $$DESTDIR/outputs/release/ui
     LIBS +=         "-L$$DESTDIR/build/release"
+    COPYDIR =       $$DESTDIR/build/release/
 }
 
 INCLUDEPATH += $$PROJECT_ROOT_DIRECTORY/src/QtUnitTests \

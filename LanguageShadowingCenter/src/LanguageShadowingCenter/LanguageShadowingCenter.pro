@@ -4,10 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
+QT += core gui qml quick
+CONFIG += c++11
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 
 TARGET = LanguageShadowingCenter
 TEMPLATE = app
@@ -37,9 +36,5 @@ SOURCES += main.cpp\
 
 HEADERS  += languageshadowingcenter.h
 
-FORMS    +=
-
-
-
-
-
+DISTFILES += \
+    LanguageShadowingCenter.qml
