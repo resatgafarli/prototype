@@ -6,14 +6,16 @@
 class LSCEpisodePreparation;
 class LSCEpisodePreparationSM;
 class QQuickView;
-
+class QQmlEngine;
+class QQmlComponent;
 
 
 class LanguageShadowingCenter : public QObject
 {
     Q_OBJECT
 private:
-    QPointer<QQuickView> view;
+    QPointer<QQmlEngine> engine;
+    QPointer<QQmlComponent> component;
     QPointer<LSCEpisodePreparation> m_LSCEpisodePreparation;
     QPointer<LSCEpisodePreparationSM> m_LSCEpisodePreparationSM;
 

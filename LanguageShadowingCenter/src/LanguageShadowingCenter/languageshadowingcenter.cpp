@@ -1,16 +1,26 @@
 #include "languageshadowingcenter.h"
 #include "lscepisodepreparation.h"
 #include "lscepisodepreparationsm.h"
-#include <QQuickView>
+#include <QQmlEngine>
+#include <QQmlComponent>
+#include <QFile>
+#include <QQmlError>
+#include <QDebug>
 
 LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
     QObject(parent),
-    view(new QQuickView)
+    engine(new QQmlEngine),
+    component (new QQmlComponent(engine))
 {
+    QFile file("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml");
+    if(file.exists()){
+        component->loadUrl(QUrl::fromLocalFile("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml"));
+        component->create();
+        for (auto e: component->errors()){
+               qDebug()<<e.description()<<endl;
+        }
 
-
-    view->setSource(QUrl::fromLocalFile("LanguageShadowingCenter.qml"));
-    view->show();
+    }
 
     /*    m_LSCEpisodePreparation = new LSCEpisodePreparation;
 
