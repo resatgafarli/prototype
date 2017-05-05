@@ -2,13 +2,25 @@
 #define LANGUAGESHADOWINGCENTER_H
 
 #include <QPointer>
-
+#include <QDebug>
 class LSCEpisodePreparation;
 class LSCEpisodePreparationSM;
 class QQuickView;
 class QQmlEngine;
 class QQmlComponent;
 
+class ExampleQmlType : public QObject{
+    Q_OBJECT
+public:
+    ExampleQmlType(){}
+    Q_INVOKABLE void copy(){
+        qDebug()<<"Copy is called..."<<endl;
+    }
+
+    Q_INVOKABLE QString paste(){
+        return "Paste function return...";
+    }
+};
 
 class LanguageShadowingCenter : public QObject
 {

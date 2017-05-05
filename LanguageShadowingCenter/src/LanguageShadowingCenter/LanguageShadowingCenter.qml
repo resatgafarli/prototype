@@ -2,6 +2,9 @@ import QtQuick 2.6
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
+import LanguageShadowingCenter.ExampleQmlType 1.0
+
+
 
 ApplicationWindow {
     id: window
@@ -9,13 +12,17 @@ ApplicationWindow {
     width: 640
     height: 480
 
+    ExampleQmlType{
+        id: exampleQmlType
+    }
+
     Action {
         id: copyAction
         text: "&Copy"
         shortcut: StandardKey.Copy
         //iconName: "edit-copy"
         enabled: true
-        onTriggered: activeFocusItem.copy()
+        onTriggered: exampleQmlType.copy()
     }
 
     Action {
@@ -33,8 +40,11 @@ ApplicationWindow {
         shortcut: StandardKey.Paste
         //iconName: "edit-paste"
         enabled: true
-        onTriggered: activeFocusItem.paste()
-    }
+        onTriggered: {
+                        messageDialog.text = exampleQmlType.paste()
+                        messageDialog.visible = true
+                      }
+        }
 
     Action {
         id: quitAction
@@ -48,19 +58,13 @@ ApplicationWindow {
     toolBar: ToolBar {
            RowLayout {
                anchors.fill: parent
-               anchors.margins: spacing
-               Label {
-                   text: UI.label
-               }
-               Item { Layout.fillWidth: true }
-               CheckBox {
-                   id: enabler
-                   text: "Enabled"
-                   checked: true
-               }
+               ToolButton { action: quitAction}
+               ToolButton { action: cutAction}
+               ToolButton { action: copyAction}
+               ToolButton { action: pasteAction}
+
            }
        }
-
        menuBar: MenuBar {
            Menu {
                title: "&File"

@@ -12,6 +12,8 @@ LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
     engine(new QQmlEngine),
     component (new QQmlComponent(engine))
 {
+    qmlRegisterType<ExampleQmlType>("LanguageShadowingCenter.ExampleQmlType",1,0,"ExampleQmlType");
+
     QFile file("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml");
     if(file.exists()){
         component->loadUrl(QUrl::fromLocalFile("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml"));
