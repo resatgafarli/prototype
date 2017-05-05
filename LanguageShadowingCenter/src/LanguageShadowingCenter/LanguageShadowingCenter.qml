@@ -13,7 +13,7 @@ ApplicationWindow {
         id: copyAction
         text: "&Copy"
         shortcut: StandardKey.Copy
-        iconName: "edit-copy"
+        //iconName: "edit-copy"
         enabled: true
         onTriggered: activeFocusItem.copy()
     }
@@ -22,7 +22,7 @@ ApplicationWindow {
         id: cutAction
         text: "Cu&t"
         shortcut: StandardKey.Cut
-        iconName: "edit-cut"
+        //iconName: "edit-cut"
         enabled: true
         onTriggered: activeFocusItem.cut()
     }
@@ -31,9 +31,18 @@ ApplicationWindow {
         id: pasteAction
         text: "&Paste"
         shortcut: StandardKey.Paste
-        iconName: "edit-paste"
+        //iconName: "edit-paste"
         enabled: true
         onTriggered: activeFocusItem.paste()
+    }
+
+    Action {
+        id: quitAction
+        text: "&Quit"
+        shortcut: StandardKey.Quit
+        //iconName: "edit-paste"
+        enabled: true
+        onTriggered: activeFocusItem.quit()
     }
 
     toolBar: ToolBar {
@@ -55,15 +64,10 @@ ApplicationWindow {
        menuBar: MenuBar {
            Menu {
                title: "&File"
-               MenuItem {
-                   text: "E&xit"
-                   shortcut: StandardKey.Quit
-                   onTriggered: Qt.quit()
-               }
+               MenuItem { action: quitAction }
            }
            Menu {
                title: "&Edit"
-               visible: tabView.currentIndex == 2
                MenuItem { action: cutAction }
                MenuItem { action: copyAction }
                MenuItem { action: pasteAction }
