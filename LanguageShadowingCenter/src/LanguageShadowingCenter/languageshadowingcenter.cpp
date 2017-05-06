@@ -6,19 +6,27 @@
 #include <QFile>
 #include <QQmlError>
 #include <QDebug>
+#include <QQmlContext>
+
+
 
 LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
     QObject(parent),
-    engine(new QQmlEngine),
-    component (new QQmlComponent(engine))
+    m_exampleObject(new ExampleObject),
+    m_engine(new QQmlEngine),
+    m_component (new QQmlComponent(m_engine))
+
 {
-    qmlRegisterType<ExampleQmlType>("LanguageShadowingCenter.ExampleQmlType",1,0,"ExampleQmlType");
+
+    m_engine->rootContext()->setContextProperty("languageShadowingCenter",this);
+    m_engine->rootContext()->setContextProperty("exampleObject",m_exampleObject);
+
 
     QFile file("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml");
     if(file.exists()){
-        component->loadUrl(QUrl::fromLocalFile("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml"));
-        component->create();
-        for (auto e: component->errors()){
+        m_component->loadUrl(QUrl::fromLocalFile("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml"));
+        m_component->create();
+        for (auto e: m_component->errors()){
                qDebug()<<e.description()<<endl;
         }
 

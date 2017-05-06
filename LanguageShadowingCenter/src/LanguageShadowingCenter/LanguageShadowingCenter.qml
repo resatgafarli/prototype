@@ -2,7 +2,7 @@ import QtQuick 2.6
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
-import LanguageShadowingCenter.ExampleQmlType 1.0
+
 
 
 
@@ -12,17 +12,13 @@ ApplicationWindow {
     width: 640
     height: 480
 
-    ExampleQmlType{
-        id: exampleQmlType
-    }
-
     Action {
         id: copyAction
         text: "&Copy"
         shortcut: StandardKey.Copy
         //iconName: "edit-copy"
         enabled: true
-        onTriggered: exampleQmlType.copy()
+        onTriggered: exampleObject.copy()
     }
 
     Action {
@@ -31,7 +27,7 @@ ApplicationWindow {
         shortcut: StandardKey.Cut
         //iconName: "edit-cut"
         enabled: true
-        onTriggered: activeFocusItem.cut()
+        //onTriggered: languageShadowingCenter.cut()
     }
 
     Action {
@@ -41,7 +37,7 @@ ApplicationWindow {
         //iconName: "edit-paste"
         enabled: true
         onTriggered: {
-                        messageDialog.text = exampleQmlType.paste()
+                        messageDialog.text = languageShadowingCenter.paste()
                         messageDialog.visible = true
                       }
         }
@@ -52,7 +48,7 @@ ApplicationWindow {
         shortcut: StandardKey.Quit
         //iconName: "edit-paste"
         enabled: true
-        onTriggered: activeFocusItem.quit()
+        //onTriggered: languageShadowingCenter.quit()
     }
 
     toolBar: ToolBar {
