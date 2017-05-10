@@ -42,7 +42,12 @@ ApplicationWindow {
         onTriggered: {
                         messageDialog.text = languageShadowingCenter.paste()
                         messageDialog.visible = true
-                        var data = ["Hello", "from", "Qml"]
+
+                        var data = {
+                                'key1': ["val11","val12","val12"],
+                                'key2': ["val21","val22","val23"],
+                                'key3': ["val31","val32","val33"]
+                        }
                         exampleQmlToCppSignal(data)
                       }
         }

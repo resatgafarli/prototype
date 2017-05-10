@@ -7,6 +7,7 @@
 #include <QQmlError>
 #include <QDebug>
 #include <QQmlContext>
+#include <QJsonArray>
 
 
 
@@ -44,15 +45,25 @@ LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
 
 void LanguageShadowingCenter::exampleQmlToCppSlot(QVariant listOfdata){
 
-    QList<QVariant> list = listOfdata.toList();
-    QListIterator<QVariant> it = list;
-    it.toFront();
-    while(it.hasNext()){
-        qDebug()<<it.next().toString()<<endl;
+    auto keyValueMap = listOfdata.toMap();
+    QListIterator<QString>  keyListIt = keyValueMap.keys();
+    keyListIt.toFront();
+    while(keyListIt.hasNext()){
+        auto key = keyListIt.next();
+        qDebug()<<key<<":";
+        QVariantList varList = keyValueMap.values(key);
+
+        QListIterator<QVariant> vals = varList.at(0).toList();//At 0 is imortant. It holds as list of list.!!!!!
+
+        vals.toFront();
+
+        while (vals.hasNext()){
+            auto val = vals.next();
+            qDebug()<<val.toString()<<",";
+        }
+        qDebug()<<endl;
     }
-
     qDebug()<<"Sender name"<< QObject::sender()->objectName()<<endl;
-
 }
 
 
