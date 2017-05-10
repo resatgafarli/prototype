@@ -43,6 +43,7 @@ LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
 }
 
 void LanguageShadowingCenter::exampleQmlToCppSlot(QVariant listOfdata){
+
     QList<QVariant> list = listOfdata.toList();
     QListIterator<QVariant> it = list;
     it.toFront();
@@ -50,6 +51,7 @@ void LanguageShadowingCenter::exampleQmlToCppSlot(QVariant listOfdata){
         qDebug()<<it.next().toString()<<endl;
     }
 
+    qDebug()<<"Sender name"<< QObject::sender()->objectName()<<endl;
 
 }
 
