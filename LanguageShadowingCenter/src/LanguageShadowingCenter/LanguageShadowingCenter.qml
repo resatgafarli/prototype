@@ -41,7 +41,8 @@ ApplicationWindow {
         onTriggered: {
                         messageDialog.text = languageShadowingCenter.paste()
                         messageDialog.visible = true
-                        exampleQmlToCppSignal("Hello from QML")
+                        var data = ["Hello", "from", "Qml"]
+                        exampleQmlToCppSignal(data)
                       }
         }
 
