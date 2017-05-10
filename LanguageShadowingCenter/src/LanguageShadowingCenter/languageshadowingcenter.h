@@ -38,6 +38,8 @@ public:
         return "Paste invoked from LanguageShadowingCenter ...";
     }
 
+    Q_SLOT void exampleQmlToCppSlot(QVariant);
+
     explicit LanguageShadowingCenter(QWidget *parent = 0);
     ~LanguageShadowingCenter();
 

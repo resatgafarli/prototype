@@ -12,6 +12,8 @@ ApplicationWindow {
     width: 640
     height: 480
 
+    signal exampleQmlToCppSignal(var data)
+
     Action {
         id: copyAction
         text: "&Copy"
@@ -39,6 +41,7 @@ ApplicationWindow {
         onTriggered: {
                         messageDialog.text = languageShadowingCenter.paste()
                         messageDialog.visible = true
+                        exampleQmlToCppSignal("Hello from QML")
                       }
         }
 

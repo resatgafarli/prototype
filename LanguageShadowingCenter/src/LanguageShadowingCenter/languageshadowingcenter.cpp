@@ -25,9 +25,12 @@ LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
     QFile file("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml");
     if(file.exists()){
         m_component->loadUrl(QUrl::fromLocalFile("../../../src/LanguageShadowingCenter/LanguageShadowingCenter.qml"));
-        m_component->create();
+        QPointer<QObject> rootObject = m_component->create();
         for (auto e: m_component->errors()){
                qDebug()<<e.description()<<endl;
+        }
+        if (!rootObject.isNull()){
+            connect(rootObject,SIGNAL(exampleQmlToCppSignal(QVariant)),this, SLOT(exampleQmlToCppSlot(QVariant)));
         }
 
     }
@@ -38,6 +41,11 @@ LanguageShadowingCenter::LanguageShadowingCenter(QWidget *parent) :
     m_LSCEpisodePreparation->show();
 */
 }
+
+void LanguageShadowingCenter::exampleQmlToCppSlot(QVariant data){
+    qDebug()<<data.toString()<<endl;
+}
+
 
 LanguageShadowingCenter::~LanguageShadowingCenter()
 {
