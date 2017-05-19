@@ -3,7 +3,8 @@ include(LanguageShadowingCenter.pri)
 SUBDIRS += LanguageShadowingCenter \
     LSCApplicationStateMachine \
     LSCEpisodePreparation  \
-    QtUnitTests
+    QtUnitTests \
+    LDAFExperimentation
 
 #Example dependency definition
 #SUBDIRS += my_executable my_library - above defined
