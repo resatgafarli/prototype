@@ -8,13 +8,17 @@ License: GPL-3.0
 #define LDAFBROWSER_H
 
 #include <QObject>
+#include <QPointer>
+class LDAFMediator;
 
 class LDAFBrowser : public QObject
 {
     Q_OBJECT
 public:
-    explicit LDAFBrowser(QObject *parent = 0);
+    explicit LDAFBrowser(QObject *parent = 0, QPointer<LDAFMediator> ldafMediator=nullptr);
 
+private:
+    QPointer<LDAFMediator> m_ldafmediator;
 signals:
 
 public slots:

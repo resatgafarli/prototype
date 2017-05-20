@@ -5,8 +5,10 @@ Date: 5/19/2017
 License: GPL-3.0
 *******************************************************/
 #include "ldafbrowser.h"
-
-LDAFBrowser::LDAFBrowser(QObject *parent) : QObject(parent)
+#include "ldafmediator.h"
+#include <QDebug>
+LDAFBrowser::LDAFBrowser(QObject *parent, QPointer<LDAFMediator> ldafMediator) : QObject(parent),
+    m_ldafmediator(ldafMediator)
 {
-
+    qDebug()<<"LDAFBrowser are constructed"<<endl;
 }

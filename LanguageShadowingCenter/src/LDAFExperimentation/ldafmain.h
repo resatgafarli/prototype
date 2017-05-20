@@ -8,12 +8,20 @@ License: GPL-3.0
 #define LDAFMAIN_H
 
 #include <QObject>
+#include <QPointer>
+class LDAFBrowser;
+class LDAFMediator;
+
 
 class LDAFMain : public QObject
 {
     Q_OBJECT
 public:
     explicit LDAFMain(QObject *parent = 0);
+
+private:
+    QPointer<LDAFMediator> m_ldafmediator;
+    QPointer<LDAFBrowser> m_ldafbrowser;
 
 signals:
 
