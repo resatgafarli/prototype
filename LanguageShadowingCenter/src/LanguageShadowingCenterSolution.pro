@@ -1,10 +1,11 @@
 TEMPLATE = subdirs
 include(LanguageShadowingCenter.pri)
-SUBDIRS += LanguageShadowingCenter \
+SUBDIRS +=  \
     LSCApplicationStateMachine \
     LSCEpisodePreparation  \
     QtUnitTests \
     LDAFExperimentation
+    #LanguageShadowingCenter
 
 #Example dependency definition
 #SUBDIRS += my_executable my_library - above defined
