@@ -8,46 +8,65 @@ License: GPL-3.0
 #define LDAFMEDIATOR_H
 
 #include <QObject>
+#include <QPointer>
+#include <QDebug>
+#include <QQueue>
 
-
-class LDAFUri{
-//TODO: BIG 5 of this class should be implemented
-private:
-    QString m_method;
-    QString m_resourceTree;
-    QString m_resourceName;
-    QString m_operation;
-    QList<QPair<QString,QString>> m_operationParsVals;
+/* TODO: add QURL and QJSON as function parameters.
+*/
+class LDAFRequestResponse{
 
 public:
-    explicit LDAFUri(QString method="", QString resource_tree="", QString resoruce_name="", QString operation=""):
-        m_method(method),
-        m_resourceTree(resource_tree),
-        m_resourceName(resoruce_name),
-        m_operation(operation){}
 
-    void setOperationParsVals(QString par, QString val){
-        m_operationParsVals.append(QPair<QString,QString>(par,val));
+    explicit LDAFRequestResponse(int id):m_id(id){
     }
+    void sendUrl(){
+        //Browser and Mediator would havei same same base class with same virtual method name.
+        //This method would be called in hear with QUrl
+        qDebug()<<m_id<<":"<<"LDAF Send URL"<<this<<endl;
+    }
+
+    void sendJson(){
+        //Browser and Mediator would have same same base class with same virtual method name.
+        //This method would be called in hear with QUrl
+        qDebug()<<m_id<<":"<<"LDAF Send JSON"<<this<<endl;
+    }
+private:
+    int m_id;
 };
 
 class LDAFCommand{
-    virtual void executeMethod() =0;
+    typedef void(LDAFRequestResponse:: *Method)();
+public:
+   explicit LDAFCommand(LDAFRequestResponse * object=nullptr, Method method=nullptr):
+        m_object(object),
+        m_method(method){  }
+    virtual ~LDAFCommand(){
+        if (m_object != nullptr)
+            delete m_object;
+    }
+    void executeCommand(){
+        if ((m_object!=nullptr)&&(m_method!=nullptr))
+            (m_object->*m_method)();
+    }
+private:
+    LDAFRequestResponse * m_object;
+    Method m_method;
 };
 
-class LDAFRequest:public LDAFCommand {
+/* TODO:
+ * Complete List processor.
+ * implement addCommand interface methods
+ * implement processListForward and processListBackward interface methods
+*/
 
-};
-
-class LDAFResponse:public LDAFCommand {
-
-};
-
-
-class LDAFProtocol {
+class LDAFCommandListProcessor {
 public:
 
 
+private:
+    QQueue<LDAFCommand> m_processedQueue;
+    QQueue<LDAFCommand> m_unprocessedQueue;
 };
 
 class LDAFMediator : public QObject
@@ -55,6 +74,8 @@ class LDAFMediator : public QObject
     Q_OBJECT
 public:
     explicit LDAFMediator(QObject *parent = 0);
+
+
 
 signals:
 

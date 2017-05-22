@@ -6,6 +6,10 @@ License: GPL-3.0
 *******************************************************/
 #include <QCoreApplication>
 #include "ldafmain.h"
+#include <QUrl>
+#include <QUrlQuery>
+#include <QDebug>
+
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
