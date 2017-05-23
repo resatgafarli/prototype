@@ -11,34 +11,57 @@ License: GPL-3.0
 #include <QPointer>
 #include <QDebug>
 #include <QQueue>
+#include <QUrl>
+#include <QJsonObject>
+#include <QJsonDocument>
 
-/* TODO: add QURL and QJSON as function parameters.
-*/
-class LDAFRequestResponse{
 
+class LDAFMessageType{
 public:
-
-    explicit LDAFRequestResponse(int id):m_id(id){
-    }
-    void sendUrl(){
-        //Browser and Mediator would havei same same base class with same virtual method name.
-        //This method would be called in hear with QUrl
-        qDebug()<<m_id<<":"<<"LDAF Send URL"<<this<<endl;
-    }
-
-    void sendJson(){
-        //Browser and Mediator would have same same base class with same virtual method name.
-        //This method would be called in hear with QUrl
-        qDebug()<<m_id<<":"<<"LDAF Send JSON"<<this<<endl;
-    }
-private:
-    int m_id;
+    virtual ~LDAFMessageType(){}
+    virtual void send()=0;
 };
 
-class LDAFCommand{
-    typedef void(LDAFRequestResponse:: *Method)();
+class LDAFUrl:public LDAFMessageType{
 public:
-   explicit LDAFCommand(LDAFRequestResponse * object=nullptr, Method method=nullptr):
+    explicit LDAFUrl(QUrl url):m_url(url){}
+    virtual ~LDAFUrl(){}
+
+    void send(){
+        //TODO:
+        //Browser and Mediator would have same base class with virtual method with argument QUrl.
+        //This method would be called in hear and QUrl to
+        //the object (browser or mediator) would be set in the constructor
+        qDebug()<<"LDAF Send URL "<<this<<m_url.toString()<<endl;
+    }
+
+private:
+    QUrl m_url;
+};
+
+class LDAFJson:public LDAFMessageType{
+public:
+    explicit LDAFJson(QJsonObject jsonobject):m_jsonobject(jsonobject){}
+    virtual ~LDAFJson(){}
+    void send(){
+        //TODO:
+        //Browser and Mediator would have same base class with virtual method with argument QUrl.
+        //This method would be called in hear and QJson to
+        //the object (browser or mediator) would be set in the constructor
+        QJsonDocument doc(m_jsonobject);
+        qDebug()<<"LDAF Send JSON "<<this<<doc.toJson()<<endl;
+
+    }
+
+private:
+    QJsonObject m_jsonobject;
+};
+
+
+class LDAFCommand{
+    typedef void(LDAFMessageType:: *Method)();
+public:
+   explicit LDAFCommand(LDAFMessageType * object=nullptr, Method method=nullptr):
         m_object(object),
         m_method(method){  }
     virtual ~LDAFCommand(){
@@ -50,7 +73,7 @@ public:
             (m_object->*m_method)();
     }
 private:
-    LDAFRequestResponse * m_object;
+    LDAFMessageType * m_object;
     Method m_method;
 };
 
