@@ -81,11 +81,6 @@ private:
     Method m_method;
 };
 
-/* TODO:
- * Complete List processor.
- * implement addCommand interface methods
- * implement processListForward and processListBackward interface methods
-*/
 
 class LDAFCommandListProcessor {
 public:
