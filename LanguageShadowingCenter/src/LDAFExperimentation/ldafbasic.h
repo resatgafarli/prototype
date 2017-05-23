@@ -116,6 +116,18 @@ public:
         }
     }
 
+    void processAllForward(){
+        while (!m_activeQueue.isEmpty()){
+            processForwardByOne();
+        }
+    }
+
+    void processAllBackward(){
+        while (!m_processedStack.isEmpty()){
+            processBackwardByOne();
+        }
+    }
+
 private:
     void addUrlMessage(QUrl & message, LDAFBasic * toObject){
         m_activeQueue.enqueue(new LDAFCommand(new LDAFUrl(message,toObject), &LDAFMessageType::send));

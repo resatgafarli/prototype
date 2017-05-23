@@ -45,13 +45,9 @@ LDAFMain::LDAFMain(QObject *parent) : QObject(parent),
    };
 
    messprocessor.addCommand(jsonobject,m_ldafbrowser);
-   messprocessor.processForwardByOne();
-   messprocessor.processForwardByOne();
-   messprocessor.processForwardByOne();
+   messprocessor.processAllForward();
+   messprocessor.processAllBackward();
 
-   messprocessor.processBackwardByOne();
-   messprocessor.processBackwardByOne();
-   messprocessor.processBackwardByOne();
 
 
 }
