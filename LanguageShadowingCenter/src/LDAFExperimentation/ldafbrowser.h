@@ -7,27 +7,20 @@ License: GPL-3.0
 #ifndef LDAFBROWSER_H
 #define LDAFBROWSER_H
 
-#include <QObject>
-#include <QPointer>
+
 #include "ldafbasic.h"
 
 class LDAFMediator;
 
-class LDAFBrowser : public QObject, public LDAFBasic
+class LDAFBrowser : public LDAFBasic
 {
     Q_OBJECT
 public:
-    explicit LDAFBrowser(QObject *parent = 0, QPointer<LDAFMediator> ldafMediator=nullptr);
-
+    explicit LDAFBrowser(QObject * parent, LDAFCommandListProcessor * commandListProcessor=nullptr);
+    void testCalls();
 private:
-    void sendURL(QUrl);
-    void sendJson(QJsonObject);
-
-
-    QPointer<LDAFMediator> m_ldafmediator;
-signals:
-
-public slots:
+    void setURLMessage(QUrl);
+    void setJsonMessage(QJsonObject);
 };
 
 #endif // LDAFBROWSER_H

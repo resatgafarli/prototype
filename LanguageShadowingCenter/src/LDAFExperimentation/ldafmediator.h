@@ -7,20 +7,17 @@ License: GPL-3.0
 #ifndef LDAFMEDIATOR_H
 #define LDAFMEDIATOR_H
 
-#include <QObject>
-#include <QPointer>
 #include "ldafbasic.h"
 
-
-class LDAFMediator : public QObject, public LDAFBasic
+class LDAFMediator : public LDAFBasic
 {
     Q_OBJECT
 public:
-    explicit LDAFMediator(QObject *parent = 0);
-
+    explicit LDAFMediator(QObject *parent = 0, LDAFCommandListProcessor * commandListProcessor=nullptr);
+    void testCalls();
 private:
-    void sendURL(QUrl);
-    void sendJson(QJsonObject);
+    void setURLMessage(QUrl);
+    void setJsonMessage(QJsonObject);
 };
 
 #endif // LDAFMEDIATOR_H

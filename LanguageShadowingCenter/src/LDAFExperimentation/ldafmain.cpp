@@ -12,42 +12,16 @@ License: GPL-3.0
 
 
 LDAFMain::LDAFMain(QObject *parent) : QObject(parent),
-    m_ldafmediator(new LDAFMediator),
-    m_ldafbrowser(new LDAFBrowser(m_ldafmediator))
+    m_ldafCommandListProcessor(new LDAFCommandListProcessor),
+    m_ldafmediator(new LDAFMediator(this,m_ldafCommandListProcessor)),
+    m_ldafbrowser(new LDAFBrowser(this,m_ldafCommandListProcessor))
 {
 
+    m_ldafmediator->setReceiverObject(m_ldafbrowser);
+    m_ldafbrowser->setReceiverObject(m_ldafmediator);
 
+    m_ldafbrowser->testCalls();
+    m_ldafmediator->testCalls();
 
-    /*TODO:
-        Complete Command List Processor
-        Pass it to  Browser and Mediator as central command dispatcher
-        Implement commands generation in Browser and Mediator according to use cases.
-
-    */
-   qDebug()<<"LDAFMain are constructed"<<endl;
-
-
-   QUrl url;
-   url.setPath("root/homeppage");
-   url.setUserName("resat");
-   url.setPassword("resatpass");
-
-   LDAFCommandListProcessor messprocessor;
-   messprocessor.addCommand(url,m_ldafmediator);
-
-   url.setPath("root/nextpage");
-   messprocessor.addCommand(url,m_ldafbrowser);
-
-   QJsonObject jsonobject
-   {
-       {"property1", 1},
-       {"property2", 2}
-   };
-
-   messprocessor.addCommand(jsonobject,m_ldafbrowser);
-   messprocessor.processAllForward();
-   messprocessor.processAllBackward();
-
-
-
+    m_ldafCommandListProcessor->processAllBackward();
 }
