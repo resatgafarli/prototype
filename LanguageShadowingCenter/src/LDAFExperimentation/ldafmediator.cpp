@@ -8,7 +8,7 @@ License: GPL-3.0
 #include <QDebug>
 
 
-LDAFMediator::LDAFMediator(QObject *parent, LDAFCommandListProcessor * commandListProcessor) :
+LDAFMediator::LDAFMediator(QObject *parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
     LDAFBasic(parent)
 {
     m_commandListProcessor = commandListProcessor;
@@ -25,22 +25,3 @@ void LDAFMediator::setJsonMessage(QJsonObject jsonObject){
 }
 
 
-
-
-void LDAFMediator::testCalls(){
-    QUrl url;
-    url.setPath("from/mediator");
-    url.setUserName("resat");
-    url.setPassword("resatpass");
-
-    m_commandListProcessor->addCommand(url,m_object);
-
-    QJsonObject jsonobject
-    {
-        {"from", 1},
-        {"mediator", 2}
-    };
-
-    m_commandListProcessor->addCommand(jsonobject,m_object);
-    m_commandListProcessor->processAllForward();
-}

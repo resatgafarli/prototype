@@ -16,8 +16,8 @@ class LDAFBrowser : public LDAFBasic
 {
     Q_OBJECT
 public:
-    explicit LDAFBrowser(QObject * parent, LDAFCommandListProcessor * commandListProcessor=nullptr);
-    void testCalls();
+    explicit LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor=nullptr);
+    void openHomePage();
 private:
     void setURLMessage(QUrl);
     void setJsonMessage(QJsonObject);
