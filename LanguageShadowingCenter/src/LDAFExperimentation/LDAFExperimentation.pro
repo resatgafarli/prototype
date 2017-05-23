@@ -29,5 +29,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 HEADERS += \
     ldafmain.h \
     ldafbrowser.h \
-    ldafmediator.h
+    ldafmediator.h \
+    ldafbasic.h
 

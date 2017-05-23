@@ -9,15 +9,21 @@ License: GPL-3.0
 
 #include <QObject>
 #include <QPointer>
+#include "ldafbasic.h"
+
 class LDAFMediator;
 
-class LDAFBrowser : public QObject
+class LDAFBrowser : public QObject, public LDAFBasic
 {
     Q_OBJECT
 public:
     explicit LDAFBrowser(QObject *parent = 0, QPointer<LDAFMediator> ldafMediator=nullptr);
 
 private:
+    void sendURL(QUrl);
+    void sendJson(QJsonObject);
+
+
     QPointer<LDAFMediator> m_ldafmediator;
 signals:
 
