@@ -12,6 +12,7 @@ License: GPL-3.0
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QPointer>
+#include <QStack>
 
 
 class LDAFBasic{
@@ -88,10 +89,45 @@ private:
 
 class LDAFCommandListProcessor {
 public:
+    void addCommand(QUrl message, LDAFBasic * toObject)
+    {
+        addUrlMessage(message,toObject);
+    }
+
+    void addCommand(QJsonObject message, LDAFBasic * toObject)
+    {
+        addJsonObjectMessage(message,toObject);
+    }
+
+    void processForwardByOne(){
+        if (!m_activeQueue.isEmpty()){
+            LDAFCommand * command  = m_activeQueue.dequeue();
+            command->executeCommand();
+            m_processedStack.push(command);
+        }
+    }
+
+    void processBackwardByOne(){
+        if (!m_processedStack.isEmpty()){
+            LDAFCommand * command  = m_processedStack.top();
+            command->executeCommand();
+            m_processedStack.pop();
+            m_activeQueue.enqueue(command);
+        }
+    }
 
 private:
-    QQueue<LDAFCommand> m_processedQueue;
-    QQueue<LDAFCommand> m_unprocessedQueue;
+    void addUrlMessage(QUrl & message, LDAFBasic * toObject){
+        m_activeQueue.enqueue(new LDAFCommand(new LDAFUrl(message,toObject), &LDAFMessageType::send));
+    }
+
+    void addJsonObjectMessage(QJsonObject & message, LDAFBasic * toObject){
+        m_activeQueue.enqueue(new LDAFCommand(new LDAFJson(message,toObject) ,&LDAFMessageType::send));
+    }
+
+    QQueue<LDAFCommand*> m_activeQueue;
+    QStack<LDAFCommand*> m_processedStack;
+
 };
 
 #endif // LDAFBASIC_H

@@ -11,7 +11,7 @@ License: GPL-3.0
 #include <QPointer>
 class LDAFBrowser;
 class LDAFMediator;
-
+class LDAFCommandListProcessor;
 
 class LDAFMain : public QObject
 {
@@ -20,8 +20,10 @@ public:
     explicit LDAFMain(QObject *parent = 0);
 
 private:
+    QPointer<LDAFCommandListProcessor>  m_ldafCommandListProcessor;
     QPointer<LDAFMediator> m_ldafmediator;
     QPointer<LDAFBrowser> m_ldafbrowser;
+
 
 signals:
 
