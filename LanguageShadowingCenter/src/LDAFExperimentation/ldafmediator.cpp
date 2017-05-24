@@ -15,7 +15,10 @@ LDAFMediator::LDAFMediator(QObject *parent, QPointer<LDAFCommandListProcessor> c
 }
 
 void LDAFMediator::setURLMessage(QUrl url){
-    qDebug()<<"URL received from browser "<<this<<url.toString()<<endl;
+
+    url.setPath("../../../src/LanguageShadowingCenter/"+url.path()+".qml");
+    m_commandListProcessor->addCommand(url,m_object);
+    m_commandListProcessor->processForwardByOne();
 }
 
 void LDAFMediator::setJsonMessage(QJsonObject jsonObject){

@@ -4,7 +4,7 @@ File: main.cpp
 Date: 5/19/2017
 License: GPL-3.0
 *******************************************************/
-#include <QCoreApplication>
+#include <QGuiApplication>
 #include "ldafmain.h"
 #include <QUrl>
 #include <QUrlQuery>
@@ -12,7 +12,7 @@ License: GPL-3.0
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QGuiApplication a(argc, argv);
     LDAFMain ldafMain;
     return a.exec();
 }

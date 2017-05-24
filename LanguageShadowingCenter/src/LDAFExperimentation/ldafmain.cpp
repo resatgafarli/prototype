@@ -19,4 +19,6 @@ LDAFMain::LDAFMain(QObject *parent) : QObject(parent),
 
     m_ldafmediator->setReceiverObject(m_ldafbrowser);
     m_ldafbrowser->setReceiverObject(m_ldafmediator);
+
+    m_ldafbrowser->openHomePage();
 }

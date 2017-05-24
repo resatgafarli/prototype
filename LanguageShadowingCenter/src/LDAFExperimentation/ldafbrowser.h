@@ -11,6 +11,8 @@ License: GPL-3.0
 #include "ldafbasic.h"
 
 class LDAFMediator;
+class QQmlEngine;
+class QQmlComponent;
 
 class LDAFBrowser : public LDAFBasic
 {
@@ -19,8 +21,13 @@ public:
     explicit LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor=nullptr);
     void openHomePage();
 private:
+    QPointer<QQmlEngine> m_engine;
+    QPointer<QQmlComponent> m_component;
+
     void setURLMessage(QUrl);
     void setJsonMessage(QJsonObject);
+
+
 };
 
 #endif // LDAFBROWSER_H

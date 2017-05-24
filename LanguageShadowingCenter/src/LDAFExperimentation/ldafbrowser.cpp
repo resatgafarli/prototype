@@ -7,15 +7,34 @@ License: GPL-3.0
 #include "ldafbrowser.h"
 #include "ldafmediator.h"
 #include <QDebug>
+#include <QFile>
+#include <QQmlEngine>
+#include <QQmlComponent>
+
+
 LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
-    LDAFBasic(parent)
+    LDAFBasic(parent),
+    m_engine(new QQmlEngine),
+    m_component (new QQmlComponent(m_engine))
 {
     m_commandListProcessor = commandListProcessor;
-
 }
 
 void LDAFBrowser::setURLMessage(QUrl url){
-    qDebug()<<"URL received from mediator "<<this<<url.toString()<<endl;
+    if (m_component.isNull())
+        return;
+    QFile file (url.path());
+    if(file.exists()){
+        m_component->loadUrl(url);
+
+        QPointer<QObject> rootObject = m_component->create();
+        for (auto e: m_component->errors()){
+               qDebug()<<e.description()<<endl;
+        }
+        if (!rootObject.isNull()){
+           // connect(rootObject,SIGNAL(exampleQmlToCppSignal(QVariant)),this, SLOT(exampleQmlToCppSlot(QVariant)));
+        }
+    }
 }
 
 void LDAFBrowser::setJsonMessage(QJsonObject jsonObject){
@@ -24,6 +43,10 @@ void LDAFBrowser::setJsonMessage(QJsonObject jsonObject){
 }
 
 void LDAFBrowser::openHomePage(){
+    QUrl url;
+    url.setPath("LanguageShadowingCenter");
+    m_commandListProcessor->addCommand(url,m_object);
+    m_commandListProcessor->processForwardByOne();
 }
 
 
