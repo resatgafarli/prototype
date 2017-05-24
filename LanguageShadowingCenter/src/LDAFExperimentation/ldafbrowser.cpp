@@ -13,11 +13,10 @@ License: GPL-3.0
 
 
 LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
-    LDAFBase(parent),
+    LDAFBase(parent,commandListProcessor),
     m_engine(new QQmlEngine),
     m_component (new QQmlComponent(m_engine))
 {
-    m_commandListProcessor = commandListProcessor;
 }
 
 void LDAFBrowser::setURLMessage(QUrl url){
@@ -45,8 +44,8 @@ void LDAFBrowser::setJsonMessage(QJsonObject jsonObject){
 void LDAFBrowser::openHomePage(){
     QUrl url;
     url.setPath("LanguageShadowingCenter");
-    m_commandListProcessor->addCommand(url,m_object);
-    m_commandListProcessor->processForwardByOne();
+    addCommand(url);
+    processForwardByOne();
 }
 
 

@@ -12,7 +12,8 @@ include(../LanguageShadowingCenter.pri)
 SOURCES += main.cpp \
     ldafmain.cpp \
     ldafbrowser.cpp \
-    ldafmediator.cpp
+    ldafmediator.cpp \
+    ldafbasic.cpp
 
 
 # The following define makes your compiler emit warnings if you use

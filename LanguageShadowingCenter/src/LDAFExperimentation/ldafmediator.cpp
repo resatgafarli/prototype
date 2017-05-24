@@ -9,16 +9,16 @@ License: GPL-3.0
 
 
 LDAFMediator::LDAFMediator(QObject *parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
-    LDAFBase(parent)
+    LDAFBase(parent,commandListProcessor)
 {
-    m_commandListProcessor = commandListProcessor;
+
 }
 
 void LDAFMediator::setURLMessage(QUrl url){
 
     url.setPath("../../../src/LanguageShadowingCenter/"+url.path()+".qml");
-    m_commandListProcessor->addCommand(url,m_object);
-    m_commandListProcessor->processForwardByOne();
+    addCommand(url);
+    processForwardByOne();
 }
 
 void LDAFMediator::setJsonMessage(QJsonObject jsonObject){
