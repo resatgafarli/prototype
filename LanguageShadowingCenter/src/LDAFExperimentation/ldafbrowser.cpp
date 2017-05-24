@@ -13,7 +13,7 @@ License: GPL-3.0
 
 
 LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
-    LDAFBasic(parent),
+    LDAFBase(parent),
     m_engine(new QQmlEngine),
     m_component (new QQmlComponent(m_engine))
 {

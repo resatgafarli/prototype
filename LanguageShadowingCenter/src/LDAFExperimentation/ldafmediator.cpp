@@ -9,7 +9,7 @@ License: GPL-3.0
 
 
 LDAFMediator::LDAFMediator(QObject *parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
-    LDAFBasic(parent)
+    LDAFBase(parent)
 {
     m_commandListProcessor = commandListProcessor;
 }

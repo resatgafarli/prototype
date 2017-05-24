@@ -9,7 +9,7 @@ License: GPL-3.0
 
 #include "ldafbasic.h"
 
-class LDAFMediator : public LDAFBasic
+class LDAFMediator : public LDAFBase
 {
     Q_OBJECT
 public:

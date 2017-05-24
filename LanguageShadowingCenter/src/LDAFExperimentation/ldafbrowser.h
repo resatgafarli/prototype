@@ -14,7 +14,7 @@ class LDAFMediator;
 class QQmlEngine;
 class QQmlComponent;
 
-class LDAFBrowser : public LDAFBasic
+class LDAFBrowser : public LDAFBase
 {
     Q_OBJECT
 public:

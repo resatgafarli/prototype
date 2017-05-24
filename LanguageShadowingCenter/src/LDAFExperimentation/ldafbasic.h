@@ -17,37 +17,37 @@ License: GPL-3.0
 
 class LDAFCommandListProcessor;
 
-class LDAFBasic:public QObject{
+class LDAFBase:public QObject{
 public:
 
-   LDAFBasic(QObject *parent=0):QObject(parent){}
+   LDAFBase(QObject *parent=0):QObject(parent){}
 
    virtual void setURLMessage(QUrl) = 0;
    virtual void setJsonMessage(QJsonObject) = 0;
 
-   void setReceiverObject(LDAFBasic * object){
+   void setReceiverObject(LDAFBase * object){
         m_object = object;
     }
 
 protected:
     QPointer<LDAFCommandListProcessor> m_commandListProcessor;
-    QPointer<LDAFBasic> m_object;
+    QPointer<LDAFBase> m_object;
 };
 
 
 class LDAFMessageType{
 public:
-    explicit LDAFMessageType(LDAFBasic * basicObject=nullptr):m_basicObject(basicObject){}
+    explicit LDAFMessageType(LDAFBase * basicObject=nullptr):m_basicObject(basicObject){}
     virtual ~LDAFMessageType(){}
     virtual void setMessage()=0;
 
 protected:
-    LDAFBasic * m_basicObject;
+    LDAFBase * m_basicObject;
 };
 
 class LDAFUrl:public LDAFMessageType{
 public:
-    explicit LDAFUrl(QUrl url, LDAFBasic * basicObject):
+    explicit LDAFUrl(QUrl url, LDAFBase * basicObject):
     LDAFMessageType(basicObject),
     m_url(url){}
     virtual ~LDAFUrl(){}
@@ -62,7 +62,7 @@ private:
 
 class LDAFJson:public LDAFMessageType{
 public:
-    explicit LDAFJson(QJsonObject jsonobject, LDAFBasic * basicObject):
+    explicit LDAFJson(QJsonObject jsonobject, LDAFBase * basicObject):
         LDAFMessageType(basicObject),
         m_jsonobject(jsonobject){}
     virtual ~LDAFJson(){}
@@ -97,12 +97,12 @@ private:
 
 class LDAFCommandListProcessor:public QObject {
 public:
-    void addCommand(QUrl message, LDAFBasic * toObject)
+    void addCommand(QUrl message, LDAFBase * toObject)
     {
         addUrlMessage(message,toObject);
     }
 
-    void addCommand(QJsonObject message, LDAFBasic * toObject)
+    void addCommand(QJsonObject message, LDAFBase * toObject)
     {
         addJsonObjectMessage(message,toObject);
     }
@@ -137,11 +137,11 @@ public:
     }
 
 private:
-    void addUrlMessage(QUrl & message, LDAFBasic * toObject){
+    void addUrlMessage(QUrl & message, LDAFBase * toObject){
         m_activeQueue.enqueue(new LDAFCommand(new LDAFUrl(message,toObject), &LDAFMessageType::setMessage));
     }
 
-    void addJsonObjectMessage(QJsonObject & message, LDAFBasic * toObject){
+    void addJsonObjectMessage(QJsonObject & message, LDAFBase * toObject){
         m_activeQueue.enqueue(new LDAFCommand(new LDAFJson(message,toObject) ,&LDAFMessageType::setMessage));
     }
 
