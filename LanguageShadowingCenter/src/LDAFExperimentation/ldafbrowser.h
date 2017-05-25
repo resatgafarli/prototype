@@ -19,7 +19,7 @@ class LDAFBrowser : public LDAFBase
     Q_OBJECT
 public:
     explicit LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor=nullptr);
-    void openPage(QString path);
+    Q_INVOKABLE void openPage(QString path);
 private:
     QPointer<QQmlEngine> m_engine;
     QPointer<QQmlComponent> m_component;

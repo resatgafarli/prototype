@@ -25,6 +25,19 @@ ApplicationWindow {
     }
 
     Action {
+        id: openNexAction
+        text: "&OpenNext"
+	//shortcut: StandardKey.Copy
+        //iconName: "edit-copy"
+        enabled: true
+        onTriggered: {
+			var nextPath = "LanguageShadowingCenter1"
+			ldafbrowser.openPage(nextPath)
+			}
+    }
+
+
+    Action {
         id: cutAction
         text: "Cu&t"
         shortcut: StandardKey.Cut
@@ -64,6 +77,7 @@ ApplicationWindow {
     toolBar: ToolBar {
            RowLayout {
                anchors.fill: parent
+               ToolButton { action: openNexAction}
                ToolButton { action: quitAction}
                ToolButton { action: cutAction}
                ToolButton { action: copyAction}
@@ -78,6 +92,7 @@ ApplicationWindow {
            }
            Menu {
                title: "&Edit"
+               MenuItem { action: openNexAction }
                MenuItem { action: cutAction }
                MenuItem { action: copyAction }
                MenuItem { action: pasteAction }
