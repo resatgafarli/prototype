@@ -19,6 +19,10 @@ void LDAFBase::addCommand(QUrl url) {
     m_commandListProcessor->addCommand(url,m_object);
  }
 
+void LDAFBase::addCommand(QJsonObject jsonObject){
+    m_commandListProcessor->addCommand(jsonObject,m_object);
+}
+
 void LDAFBase::processForwardByOne(){
      m_commandListProcessor->processForwardByOne();
 }

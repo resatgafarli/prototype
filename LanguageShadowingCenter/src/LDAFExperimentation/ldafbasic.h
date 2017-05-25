@@ -27,6 +27,7 @@ public:
    virtual void setJsonMessage(QJsonObject) = 0;
 
    virtual void addCommand(QUrl url);
+   virtual void addCommand(QJsonObject jsonObject);
    virtual void processForwardByOne();
    virtual void processBackwardByOne();
    virtual void processAllForward();
