@@ -18,12 +18,14 @@ LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> co
     m_engine(new QQmlEngine),
     m_component (new QQmlComponent(m_engine))
 {
+    m_engine->rootContext()->setContextProperty("ldafbrowser",this);
 }
 
 void LDAFBrowser::setURLMessage(QUrl url){
     if (m_component.isNull())
         return;
-    m_engine->rootContext()->setContextProperty("ldafbrowser",this);
+
+
     QFile file (url.path());
     if(file.exists()){
         m_component->loadUrl(url);
