@@ -20,7 +20,7 @@ void LDAFBase::addCommand(QUrl url) {
  }
 
 void LDAFBase::processForwardByOne(){
-     m_commandListProcessor->processBackwardByOne();
+     m_commandListProcessor->processForwardByOne();
 }
 
 void LDAFBase::processBackwardByOne(){
