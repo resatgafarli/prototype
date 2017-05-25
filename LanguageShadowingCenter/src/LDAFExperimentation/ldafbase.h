@@ -4,8 +4,8 @@ File: ldafbasic
 Date: 5/23/2017
 License: GPL-3.0
 *******************************************************/
-#ifndef LDAFBASIC_H
-#define LDAFBASIC_H
+#ifndef LDAFBASE_H
+#define LDAFBASE_H
 #include <QObject>
 #include <QDebug>
 #include <QQueue>
@@ -100,5 +100,5 @@ private:
 
 };
 
-#endif // LDAFBASIC_H
+#endif // LDAFBASE_H
 

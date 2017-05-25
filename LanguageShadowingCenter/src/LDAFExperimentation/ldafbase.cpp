@@ -4,7 +4,7 @@ File: ldafbasic
 Date: 5/24/2017
 License: GPL-3.0
 *******************************************************/
-#include "ldafbasic.h"
+#include "ldafbase.h"
 
 /**/
 LDAFBase::LDAFBase(QObject *parent,QPointer<LDAFCommandListProcessor>commandListProcessor):

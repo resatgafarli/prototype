@@ -13,7 +13,7 @@ SOURCES += main.cpp \
     ldafmain.cpp \
     ldafbrowser.cpp \
     ldafmediator.cpp \
-    ldafbasic.cpp
+    ldafbase.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -31,5 +31,5 @@ HEADERS += \
     ldafmain.h \
     ldafbrowser.h \
     ldafmediator.h \
-    ldafbasic.h
+    ldafbase.h
 
