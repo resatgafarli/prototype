@@ -5,7 +5,7 @@ Date: 5/19/2017
 License: GPL-3.0
 *******************************************************/
 #include "ldafmain.h"
-#include "ldafbasic.h"
+#include "ldafbase.h"
 #include "ldafbrowser.h"
 #include "ldafmediator.h"
 #include <QDebug>
@@ -19,6 +19,5 @@ LDAFMain::LDAFMain(QObject *parent) : QObject(parent),
 
     m_ldafmediator->setReceiverObject(m_ldafbrowser);
     m_ldafbrowser->setReceiverObject(m_ldafmediator);
-
-    m_ldafbrowser->openHomePage();
+    m_ldafbrowser->openPage("LanguageShadowingCenter");
 }

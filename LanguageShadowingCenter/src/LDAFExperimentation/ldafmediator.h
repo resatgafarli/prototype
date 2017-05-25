@@ -7,7 +7,7 @@ License: GPL-3.0
 #ifndef LDAFMEDIATOR_H
 #define LDAFMEDIATOR_H
 
-#include "ldafbasic.h"
+#include "ldafbase.h"
 
 class LDAFMediator : public LDAFBase
 {

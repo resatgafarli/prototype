@@ -10,6 +10,7 @@ License: GPL-3.0
 #include <QFile>
 #include <QQmlEngine>
 #include <QQmlComponent>
+#include <QQmlContext>
 
 
 LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
@@ -22,6 +23,7 @@ LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> co
 void LDAFBrowser::setURLMessage(QUrl url){
     if (m_component.isNull())
         return;
+    m_engine->rootContext()->setContextProperty("ldafbrowser",this);
     QFile file (url.path());
     if(file.exists()){
         m_component->loadUrl(url);
@@ -41,9 +43,9 @@ void LDAFBrowser::setJsonMessage(QJsonObject jsonObject){
     qDebug()<<"JSON received from mediator"<<this<<doc.toJson()<<endl;
 }
 
-void LDAFBrowser::openHomePage(){
+void LDAFBrowser::openPage(QString path){
     QUrl url;
-    url.setPath("LanguageShadowingCenter");
+    url.setPath(path);
     addCommand(url);
     processForwardByOne();
 }

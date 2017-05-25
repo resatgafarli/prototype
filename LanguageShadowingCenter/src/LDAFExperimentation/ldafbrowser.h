@@ -8,7 +8,7 @@ License: GPL-3.0
 #define LDAFBROWSER_H
 
 
-#include "ldafbasic.h"
+#include "ldafbase.h"
 
 class LDAFMediator;
 class QQmlEngine;
@@ -19,7 +19,7 @@ class LDAFBrowser : public LDAFBase
     Q_OBJECT
 public:
     explicit LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor=nullptr);
-    void openHomePage();
+    void openPage(QString path);
 private:
     QPointer<QQmlEngine> m_engine;
     QPointer<QQmlComponent> m_component;
