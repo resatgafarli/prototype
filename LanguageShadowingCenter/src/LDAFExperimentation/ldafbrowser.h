@@ -21,8 +21,10 @@ public:
     explicit LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor=nullptr);
     Q_INVOKABLE void openPage(QString path);
 private:
+
     QPointer<QQmlEngine> m_engine;
     QPointer<QQmlComponent> m_component;
+    QPointer<QObject> m_qmlObject;
 
     void setURLMessage(QUrl);
     void setJsonMessage(QJsonObject);

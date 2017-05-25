@@ -9,7 +9,9 @@ ApplicationWindow {
     width: 640
     height: 480
     objectName: "applicationWindow"
-
+    
+    Loader {id:pageLoader}
+    
     Action {
         id: secondPageAction
         text: "&Go to Second Page"
@@ -17,8 +19,9 @@ ApplicationWindow {
         //iconName: ""
         enabled: true
         onTriggered: {
-			var nextPath = "SecondPage"
-			ldafbrowser.openPage(nextPath)
+			pageLoader.source = "../../../src/LanguageShadowingCenter/SecondPage.qml"
+			//var nextPath = "SecondPage"
+			//ldafbrowser.openPage(nextPath)
 		}
     }
 

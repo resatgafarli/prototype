@@ -16,7 +16,8 @@ License: GPL-3.0
 LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
     LDAFBase(parent,commandListProcessor),
     m_engine(new QQmlEngine),
-    m_component (new QQmlComponent(m_engine))
+    m_component (new QQmlComponent(m_engine)),
+    m_qmlObject(nullptr)
 {
     m_engine->rootContext()->setContextProperty("ldafbrowser",this);
 }
@@ -28,13 +29,17 @@ void LDAFBrowser::setURLMessage(QUrl url){
 
     QFile file (url.path());
     if(file.exists()){
-        m_component->loadUrl(url);
 
-        QPointer<QObject> rootObject = m_component->create();
+        if (!m_qmlObject.isNull()){
+            m_qmlObject.clear();
+        }
+
+        m_component->loadUrl(url);
+        m_qmlObject = m_component->create();
         for (auto e: m_component->errors()){
                qDebug()<<e.description()<<endl;
         }
-        if (!rootObject.isNull()){
+        if (!m_qmlObject.isNull()){
            // connect(rootObject,SIGNAL(exampleQmlToCppSignal(QVariant)),this, SLOT(exampleQmlToCppSlot(QVariant)));
         }
     }
