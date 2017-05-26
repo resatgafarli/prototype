@@ -19,9 +19,8 @@ ApplicationWindow {
         //iconName: ""
         enabled: true
         onTriggered: {
-			pageLoader.source = "../../../src/LanguageShadowingCenter/SecondPage.qml"
-			//var nextPath = "SecondPage"
-			//ldafbrowser.openPage(nextPath)
+			var nextPath = "SecondPage"
+			ldafbrowser.openPage(nextPath)
 		}
     }
 
