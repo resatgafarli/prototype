@@ -24,12 +24,12 @@ private:
 
     QPointer<QQmlEngine> m_engine;
     QPointer<QQmlComponent> m_component;
-    QPointer<QObject> m_qmlObject;
+    QPointer<QObject> m_appWindowRoot;
 
     void setURLMessage(QUrl);
     void setJsonMessage(QJsonObject);
 
-
+    void loadApplicationWindow();
 };
 
 #endif // LDAFBROWSER_H

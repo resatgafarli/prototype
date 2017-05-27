@@ -33,3 +33,6 @@ HEADERS += \
     ldafmediator.h \
     ldafbase.h
 
+DISTFILES += \
+    ldafbrowser.qml
+

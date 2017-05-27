@@ -17,32 +17,29 @@ LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> co
     LDAFBase(parent,commandListProcessor),
     m_engine(new QQmlEngine),
     m_component (new QQmlComponent(m_engine)),
-    m_qmlObject(nullptr)
+    m_appWindowRoot(nullptr)
 {
     m_engine->rootContext()->setContextProperty("ldafbrowser",this);
+    loadApplicationWindow();
 }
 
-void LDAFBrowser::setURLMessage(QUrl url){
-    if (m_component.isNull())
-        return;
-
-
+void LDAFBrowser::loadApplicationWindow(){
+    QUrl url("../../../src/LDAFExperimentation/ldafbrowser.qml");
     QFile file (url.path());
     if(file.exists()){
-
-        if (!m_qmlObject.isNull()){
-            m_qmlObject.clear();
-        }
-
         m_component->loadUrl(url);
-        m_qmlObject = m_component->create();
+        m_appWindowRoot = m_component->create();
         for (auto e: m_component->errors()){
                qDebug()<<e.description()<<endl;
         }
-        if (!m_qmlObject.isNull()){
+        if (!m_appWindowRoot.isNull()){
            // connect(rootObject,SIGNAL(exampleQmlToCppSignal(QVariant)),this, SLOT(exampleQmlToCppSlot(QVariant)));
         }
     }
+}
+
+void LDAFBrowser::setURLMessage(QUrl url){
+
 }
 
 void LDAFBrowser::setJsonMessage(QJsonObject jsonObject){
