@@ -54,4 +54,11 @@ void LDAFBrowser::openPage(QString path){
     processForwardByOne();
 }
 
+void LDAFBrowser::nextPage(){
+    processForwardByOne();
+}
+
+void LDAFBrowser::prevPage(){
+    processBackwardByOne();
+}
 

@@ -1,7 +1,7 @@
 import QtQuick 2.6
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
-
+import QtQml.StateMachine 1.0
 
 
 ApplicationWindow {
@@ -12,42 +12,42 @@ ApplicationWindow {
     title: "LDAFBrowser"
 
     Action {
+        id: nextPage
+        text: "Next Page"
+        onTriggered: {ldafbrowser.nextPage()}
+    }
+
+    Action {
+        id: prevPage
+        text: "Prev Page"
+        onTriggered: {ldafbrowser.prevPage()}
+    }
+
+    Action {
         id: closeWindow
         text: "Close Window"
+        onTriggered: {close()}
     }
 
     toolBar: ToolBar {
-           RowLayout {
+           Row{
                anchors.fill: parent
+               ToolButton { action: nextPage}
+               ToolButton { action: prevPage}
                ToolButton { action: closeWindow}
            }
        }
 
+    StateMachine{
+        id: naviStates
+        initialState: both_closed
+        running: true
 
-/*
-    Action {
-        id: secondPageAction
-        text: "&Go to Second Page"
-        shortcut: StandardKey.Copy
-        //iconName: ""
-        enabled: true
-        onTriggered: {
-            //var nextPath = "SecondPage"
-            //ldafbrowser.openPage(nextPath)
+        State {
+            id: both_closed
         }
     }
 
-    toolBar: ToolBar {
-           RowLayout {
-               anchors.fill: parent
-               ToolButton { action: secondPageAction}
-           }
-       }
-       menuBar: MenuBar {
-           Menu {
-               title: "&File"
-               MenuItem { action: secondPageAction }
-           }
-       }
-*/
+
+
 }
