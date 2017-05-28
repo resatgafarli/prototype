@@ -38,6 +38,17 @@ ApplicationWindow {
            }
        }
 
+    Loader {
+      id: contentLoader
+      anchors.fill: parent
+    }
+
+    function browserContentLoader(url) {
+        console.log(url)
+        contentLoader.source = url
+        contentLoader.asynchronous = true
+    }
+
     StateMachine{
         id: naviStates
         initialState: both_closed
@@ -47,7 +58,4 @@ ApplicationWindow {
             id: both_closed
         }
     }
-
-
-
 }

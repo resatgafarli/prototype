@@ -11,7 +11,8 @@ License: GPL-3.0
 #include <QQmlEngine>
 #include <QQmlComponent>
 #include <QQmlContext>
-
+#include <QQuickItem>
+#include <QFileInfo>
 
 LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor) :
     LDAFBase(parent,commandListProcessor),
@@ -35,10 +36,23 @@ void LDAFBrowser::loadApplicationWindow(){
         if (!m_appWindowRoot.isNull()){
            // connect(rootObject,SIGNAL(exampleQmlToCppSignal(QVariant)),this, SLOT(exampleQmlToCppSlot(QVariant)));
         }
+    } else{
+        qDebug()<<"File not found:"<<url.path()<<endl;
     }
 }
 
 void LDAFBrowser::setURLMessage(QUrl url){
+    QVariant returnedValue;
+    QFile file (url.path());
+    if (file.exists()){
+        QFileInfo fileInfo(url.path());
+        QUrl url (fileInfo.absoluteFilePath());
+        QMetaObject::invokeMethod(m_appWindowRoot, "browserContentLoader",
+              Q_RETURN_ARG(QVariant, returnedValue),
+              Q_ARG(QVariant, url));
+    }else {
+        qDebug()<<"File not found:"<<url.path()<<endl;
+    }
 
 }
 
