@@ -20,7 +20,8 @@ public:
     explicit LDAFMain(QObject *parent = 0);
 
 private:
-    QPointer<LDAFCommandListProcessor>  m_ldafCommandListProcessor;
+    QPointer<LDAFCommandListProcessor>  m_browserCLP;
+    QPointer<LDAFCommandListProcessor>  m_mediatorCLP;
     QPointer<LDAFMediator> m_ldafmediator;
     QPointer<LDAFBrowser> m_ldafbrowser;
 

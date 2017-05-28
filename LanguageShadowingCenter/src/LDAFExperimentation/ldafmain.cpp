@@ -12,9 +12,10 @@ License: GPL-3.0
 
 
 LDAFMain::LDAFMain(QObject *parent) : QObject(parent),
-    m_ldafCommandListProcessor(new LDAFCommandListProcessor),
-    m_ldafmediator(new LDAFMediator(this,m_ldafCommandListProcessor)),
-    m_ldafbrowser(new LDAFBrowser(this,m_ldafCommandListProcessor))
+    m_browserCLP(new LDAFCommandListProcessor),
+    m_mediatorCLP(new LDAFCommandListProcessor),
+    m_ldafmediator(new LDAFMediator(this,m_mediatorCLP)),
+    m_ldafbrowser(new LDAFBrowser(this,m_browserCLP))
 {
 
     m_ldafmediator->setReceiverObject(m_ldafbrowser);
