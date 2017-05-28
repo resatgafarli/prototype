@@ -45,8 +45,6 @@ void LDAFBrowser::setURLMessage(QUrl url){
     QVariant returnedValue;
     QFile file (url.path());
     if (file.exists()){
-        QFileInfo fileInfo(url.path());
-        QUrl url (fileInfo.absoluteFilePath());
         QMetaObject::invokeMethod(m_appWindowRoot, "browserContentLoader",
               Q_RETURN_ARG(QVariant, returnedValue),
               Q_ARG(QVariant, url));
