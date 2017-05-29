@@ -49,6 +49,10 @@ ApplicationWindow {
         contentLoader.asynchronous = true
     }
 
+    function loadHomePage(){
+        ldafbrowser.openPage("../../src/LanguageShadowingCenter/FirstPage.qml","browserContentLoader")
+    }
+
     StateMachine{
         id: naviStates
         initialState: both_closed

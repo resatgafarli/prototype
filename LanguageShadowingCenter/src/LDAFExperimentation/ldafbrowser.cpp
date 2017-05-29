@@ -29,23 +29,27 @@ void LDAFBrowser::loadApplicationWindow(){
     QFile file (url.path());
     if(file.exists()){
         m_component->loadUrl(url);
+        while (m_component->isLoading()){}
+
         m_appWindowRoot = m_component->create();
         for (auto e: m_component->errors()){
                qDebug()<<e.description()<<endl;
         }
-        if (!m_appWindowRoot.isNull()){
-           // connect(rootObject,SIGNAL(exampleQmlToCppSignal(QVariant)),this, SLOT(exampleQmlToCppSlot(QVariant)));
-        }
     } else{
         qDebug()<<"File not found:"<<url.path()<<endl;
     }
+}
+void LDAFBrowser::loadHomePage(){
+if (!m_appWindowRoot.isNull())
+    QMetaObject::invokeMethod(m_appWindowRoot, "loadHomePage");
 }
 
 void LDAFBrowser::setURLMessage(QUrl url, QString callBackJSFunc){
     QVariant returnedValue;
     QFile file (url.path());
     if (file.exists()){
-        QMetaObject::invokeMethod(m_appWindowRoot, callBackJSFunc.toUtf8().data(),
+        if (!m_appWindowRoot.isNull())
+            QMetaObject::invokeMethod(m_appWindowRoot, callBackJSFunc.toUtf8().data(),
               Q_RETURN_ARG(QVariant, returnedValue),
               Q_ARG(QVariant, url));
     }else {
