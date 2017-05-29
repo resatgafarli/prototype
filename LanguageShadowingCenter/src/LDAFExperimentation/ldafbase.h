@@ -23,11 +23,11 @@ public:
    explicit LDAFBase(QObject *parent=0,QPointer<LDAFCommandListProcessor>commandListProcessor=nullptr);
    void setReceiverObject(LDAFBase * object);
 
-   virtual void setURLMessage(QUrl) = 0;
-   virtual void setJsonMessage(QJsonObject) = 0;
+   virtual void setURLMessage(QUrl,QString) = 0;
+   virtual void setJsonMessage(QJsonObject,QString) = 0;
 
-   virtual void addCommand(QUrl url);
-   virtual void addCommand(QJsonObject jsonObject);
+   virtual void addCommand(QUrl url, QString callBackJSFunc);
+   virtual void addCommand(QJsonObject jsonObject, QString callBackJSFunc);
    virtual void processForwardByOne();
    virtual void processBackwardByOne();
    virtual void processAllForward();
@@ -41,17 +41,18 @@ private:
 
 class LDAFMessageType{
 public:
-    explicit LDAFMessageType(LDAFBase * basicObject=nullptr);
+    explicit LDAFMessageType(LDAFBase * basicObject=nullptr,QString callBackJSFunc="");
     virtual ~LDAFMessageType();
     virtual void setMessage()=0;
 
 protected:
     LDAFBase * m_basicObject;
+    QString m_callBackJSFunc;
 };
 
 class LDAFUrl:public LDAFMessageType{
 public:
-    explicit LDAFUrl(QUrl url, LDAFBase * basicObject);
+    explicit LDAFUrl(QUrl url, LDAFBase * basicObject,QString callBackJSFunc);
     virtual ~LDAFUrl();
     void setMessage();
 
@@ -61,7 +62,7 @@ private:
 
 class LDAFJson:public LDAFMessageType{
 public:
-    explicit LDAFJson(QJsonObject jsonobject, LDAFBase * basicObject);
+    explicit LDAFJson(QJsonObject jsonobject, LDAFBase * basicObject, QString callBackJSFunc);
     virtual ~LDAFJson();
     void setMessage();
 
@@ -84,16 +85,16 @@ private:
 
 class LDAFCommandListProcessor:public QObject {
 public:
-    void addCommand(QUrl message, LDAFBase * toObject);
-    void addCommand(QJsonObject message, LDAFBase * toObject);
+    void addCommand(QUrl message, LDAFBase * toObject, QString callBackJSFunc);
+    void addCommand(QJsonObject message, LDAFBase * toObject, QString callBackJSFunc);
     void processForwardByOne();
     void processBackwardByOne();
     void processAllForward();
     void processAllBackward();
 
 private:
-    void addUrlMessage(QUrl & message, LDAFBase * toObject);
-    void addJsonObjectMessage(QJsonObject & message, LDAFBase * toObject);
+    void addUrlMessage(QUrl & message, LDAFBase * toObject, QString callBackJSFunc);
+    void addJsonObjectMessage(QJsonObject & message, LDAFBase * toObject, QString callBackJSFunc);
 
     QQueue<LDAFCommand*> m_activeQueue;
     QStack<LDAFCommand*> m_processedStack;

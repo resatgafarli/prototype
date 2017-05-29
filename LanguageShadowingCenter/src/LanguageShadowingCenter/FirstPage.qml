@@ -5,7 +5,7 @@ Item{
     Button {
          id: mybutton
          text: "Go to second page"
-        onClicked: ldafbrowser.openPage("../../src/LanguageShadowingCenter/SecondPage.qml")
+        onClicked: ldafbrowser.openPage("../../src/LanguageShadowingCenter/SecondPage.qml","browserContentLoader")
 
      }
 }

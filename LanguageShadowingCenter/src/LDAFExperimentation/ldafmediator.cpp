@@ -16,13 +16,13 @@ LDAFMediator::LDAFMediator(QObject *parent, QPointer<LDAFCommandListProcessor> c
     m_baseUrl = m_baseUrl.fromLocalFile(m_baseUrl.path());
 }
 
-void LDAFMediator::setURLMessage(QUrl url){
+void LDAFMediator::setURLMessage(QUrl url,QString callBackJSFunc){
     QUrl resolvedUrl(m_baseUrl.resolved(url));
-    addCommand(resolvedUrl);
+    addCommand(resolvedUrl,callBackJSFunc);
     processForwardByOne();
 }
 
-void LDAFMediator::setJsonMessage(QJsonObject jsonObject){
+void LDAFMediator::setJsonMessage(QJsonObject jsonObject, QString callBackJSFunc){
     QJsonDocument doc(jsonObject);
     qDebug()<<"JSON received from browser"<<this<<doc.toJson()<<endl;
 

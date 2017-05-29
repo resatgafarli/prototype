@@ -19,7 +19,7 @@ class LDAFBrowser : public LDAFBase
     Q_OBJECT
 public:
     explicit LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> commandListProcessor=nullptr);
-    Q_INVOKABLE void openPage(QString path);
+    Q_INVOKABLE void openPage(QString path, QString callBackJSFunc);
     Q_INVOKABLE void nextPage();
     Q_INVOKABLE void prevPage();
 private:
@@ -28,8 +28,8 @@ private:
     QPointer<QQmlComponent> m_component;
     QPointer<QObject> m_appWindowRoot;
 
-    void setURLMessage(QUrl);
-    void setJsonMessage(QJsonObject);
+    void setURLMessage(QUrl,QString);
+    void setJsonMessage(QJsonObject,QString);
 
     void loadApplicationWindow();
 };
