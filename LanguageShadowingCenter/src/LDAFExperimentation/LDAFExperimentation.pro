@@ -33,3 +33,6 @@ HEADERS += \
 DISTFILES += \
     ldafbrowser.qml
 
+CONFIG(debug, debug|release) {
+    TARGET =        $$join(TARGET,,,_D)
+}
