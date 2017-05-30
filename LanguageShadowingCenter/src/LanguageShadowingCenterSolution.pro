@@ -1,6 +1,5 @@
 TEMPLATE = subdirs
-include(LanguageShadowingCenter.pri)
-SUBDIRS +=  \
+SUBDIRS += \
     LDAFExperimentation \
     QtUnitTests \
 

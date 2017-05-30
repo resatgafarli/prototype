@@ -6,9 +6,6 @@ CONFIG += console
 CONFIG -= app_bundle
 
 TEMPLATE = app
-include(../LanguageShadowingCenter.pri)
-
-
 SOURCES += main.cpp \
     ldafmain.cpp \
     ldafbrowser.cpp \
