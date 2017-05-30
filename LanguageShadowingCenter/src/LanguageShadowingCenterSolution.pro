@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 SUBDIRS += \
-    LDAFExperimentation \
+    LDAF \
     QtUnitTests \
 
 #Example dependency definition
