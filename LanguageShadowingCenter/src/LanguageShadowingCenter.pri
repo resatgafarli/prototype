@@ -1,5 +1,4 @@
-include(BuildPath.pri)
-
+PROJECT_ROOT_DIRECTORY = $$PWD/..
 CONFIG += debug_and_release
 DESTDIR = $$PROJECT_ROOT_DIRECTORY/destdir
 

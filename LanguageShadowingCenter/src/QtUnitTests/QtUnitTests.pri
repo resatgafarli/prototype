@@ -1,10 +1,4 @@
-SOURCES += \
-    ../LSCApplicationStateMachine/lscapplicationstatemachine.cpp \
-    ../LSCEpisodePreparation/lscepisodepreparationsm.cpp \
-    ../LSCEpisodePreparation/lscepisodepreparation.cpp
+#SOURCES += ../ExampleUnitPath/ExampleUnit.cpp \
 
-HEADERS += \
-    ../LSCApplicationStateMachine/lscapplicationstatemachine.h \
-    ../LSCEpisodePreparation/lscepisodepreparationsm.h \
-    ../LSCEpisodePreparation/lscepisodepreparation.h
+#HEADERS +=  ../ExampleUnitPath/ExampleUnit.h \
 
