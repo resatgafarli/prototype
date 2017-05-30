@@ -31,4 +31,7 @@ SOURCES +=  tst_main.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
+CONFIG(debug, debug|release) {
+    TARGET =        $$join(TARGET,,,_D)
+}
 
