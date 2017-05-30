@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += widgets testlib
-TARGET = tst_application_unit_test
+TARGET = ldaf_unit_test
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
