@@ -25,19 +25,13 @@ LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> co
 }
 
 void LDAFBrowser::loadApplicationWindow(){
-    QUrl url("../../../src/LDAF/ldafbrowser.qml");
-    QFile file (url.path());
-    if(file.exists()){
-        m_component->loadUrl(url);
-        while (m_component->isLoading()){}
-
-        m_appWindowRoot = m_component->create();
-        for (auto e: m_component->errors()){
-               qDebug()<<e.description()<<endl;
-        }
-    } else{
-        qDebug()<<"File not found:"<<url.path()<<endl;
-    }
+    QUrl url("qrc:/ldafbrowser.qml");
+    m_component->loadUrl(url);
+    while (m_component->isLoading()){}
+    m_appWindowRoot = m_component->create();
+    for (auto e: m_component->errors()){
+            qDebug()<<e.description()<<endl;
+     }
 }
 void LDAFBrowser::loadHomePage(){
 if (!m_appWindowRoot.isNull())

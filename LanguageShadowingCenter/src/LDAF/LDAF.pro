@@ -36,3 +36,6 @@ DISTFILES += \
 CONFIG(debug, debug|release) {
     TARGET =        $$join(TARGET,,,_D)
 }
+
+RESOURCES += \
+    ldaf.qrc
