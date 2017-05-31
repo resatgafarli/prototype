@@ -9,16 +9,23 @@ License: GPL-3.0
 #include "ldafbrowser.h"
 #include "ldafmediator.h"
 #include <QDebug>
+#include <QtGui/QGuiApplication>
 
 
-LDAFMain::LDAFMain(QObject *parent) : QObject(parent),
-    m_browserCLP(new LDAFCommandListProcessor),
-    m_mediatorCLP(new LDAFCommandListProcessor),
-    m_ldafmediator(new LDAFMediator(this,m_mediatorCLP)),
-    m_ldafbrowser(new LDAFBrowser(this,m_browserCLP))
+LDAFMain::LDAFMain(QObject *parent) : QObject(parent)
 {
+
+}
+int LDAFMain::instantiateLdaf(int argc, char *argv[]){
+    QGuiApplication a(argc, argv);
+    m_browserCLP = new LDAFCommandListProcessor;
+    m_mediatorCLP = new LDAFCommandListProcessor;
+    m_ldafmediator = new LDAFMediator(this,m_mediatorCLP);
+    m_ldafbrowser = new LDAFBrowser(this,m_browserCLP);
 
     m_ldafmediator->setReceiverObject(m_ldafbrowser);
     m_ldafbrowser->setReceiverObject(m_ldafmediator);
     m_ldafbrowser->loadHomePage();
+
+    return a.exec();
 }

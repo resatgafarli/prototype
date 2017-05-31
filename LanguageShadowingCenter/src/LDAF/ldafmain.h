@@ -18,7 +18,7 @@ class LDAFSHARED_EXPORT LDAFMain : public QObject
     Q_OBJECT
 public:
     explicit LDAFMain(QObject *parent = 0);
-
+    int instantiateLdaf(int argc, char *argv[]);
 private:
     QPointer<LDAFCommandListProcessor>  m_browserCLP;
     QPointer<LDAFCommandListProcessor>  m_mediatorCLP;
