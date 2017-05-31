@@ -1,18 +1,15 @@
 /******************************************************
 Author: resat.gafarli@gmail.com
-File: main.cpp
-Date: 5/19/2017
+File: %{Cpp:License:FileName}
+Date: 5/30/2017
 License: GPL-3.0
 *******************************************************/
-#include <QGuiApplication>
-#include "ldafmain.h"
-#include <QUrl>
-#include <QUrlQuery>
-#include <QDebug>
+#include <QCoreApplication>
+#include "../LDAF/ldafmain.h"
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication a(argc, argv);
+    QCoreApplication a(argc, argv);
     LDAFMain ldafMain;
     return a.exec();
 }

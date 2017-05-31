@@ -2,6 +2,7 @@ TEMPLATE = subdirs
 SUBDIRS += \
     LDAF \
     QtUnitTests \
+    LDAFConcreteUsage
 
 #Example dependency definition
 #SUBDIRS += my_executable my_library - above defined
@@ -10,4 +11,3 @@ SUBDIRS += \
 #my_library.subdir = lib
 
     
-CONFIG += debug_and_release

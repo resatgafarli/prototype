@@ -25,7 +25,7 @@ LDAFBrowser::LDAFBrowser(QObject * parent, QPointer<LDAFCommandListProcessor> co
 }
 
 void LDAFBrowser::loadApplicationWindow(){
-    QUrl url("../../../src/LDAFExperimentation/ldafbrowser.qml");
+    QUrl url("../../../src/LDAF/ldafbrowser.qml");
     QFile file (url.path());
     if(file.exists()){
         m_component->loadUrl(url);

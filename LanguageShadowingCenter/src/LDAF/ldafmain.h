@@ -6,14 +6,14 @@ License: GPL-3.0
 *******************************************************/
 #ifndef LDAFMAIN_H
 #define LDAFMAIN_H
-
+#include "ldaf_global.h"
 #include <QObject>
 #include <QPointer>
 class LDAFBrowser;
 class LDAFMediator;
 class LDAFCommandListProcessor;
 
-class LDAFMain : public QObject
+class LDAFSHARED_EXPORT LDAFMain : public QObject
 {
     Q_OBJECT
 public:
