@@ -1,13 +1,4 @@
-
-CONFIG(debug, debug|release) {
-    TARGET = $$join(TARGET,,,_D)
-    LIBS += -lLDAF_D
-} else {
-    TARGET = $$join(TARGET,,,)
-    LIBS += -lLDAF
-}
-
-
+include(../globalpath.pri)
 QT += core
 QT -= gui
 
@@ -31,3 +22,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+CONFIG(debug, debug|release) {
+    TARGET = $$join(TARGET,,,_D)
+    LIBS += -lLDAF_D
+} else {
+    TARGET = $$join(TARGET,,,)
+    LIBS += -lLDAF
+}
